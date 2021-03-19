@@ -1,0 +1,13 @@
+G:\David\PROGRAMMING\Others\UML\ClassDiagram\ClassDiagram_onlyProperties_CSharp\bin\Debug\netcoreapp3.1\ClassDiagram_onlyProperties_CSharp.exe
+G:\David\PROGRAMMING\Others\UML\ClassDiagram\ClassDiagram_onlyProperties_CSharp\bin\Debug\netcoreapp3.1\ClassDiagram_onlyProperties_CSharp.deps.json
+G:\David\PROGRAMMING\Others\UML\ClassDiagram\ClassDiagram_onlyProperties_CSharp\bin\Debug\netcoreapp3.1\ClassDiagram_onlyProperties_CSharp.runtimeconfig.json
+G:\David\PROGRAMMING\Others\UML\ClassDiagram\ClassDiagram_onlyProperties_CSharp\bin\Debug\netcoreapp3.1\ClassDiagram_onlyProperties_CSharp.runtimeconfig.dev.json
+G:\David\PROGRAMMING\Others\UML\ClassDiagram\ClassDiagram_onlyProperties_CSharp\bin\Debug\netcoreapp3.1\ClassDiagram_onlyProperties_CSharp.dll
+G:\David\PROGRAMMING\Others\UML\ClassDiagram\ClassDiagram_onlyProperties_CSharp\bin\Debug\netcoreapp3.1\ClassDiagram_onlyProperties_CSharp.pdb
+G:\David\PROGRAMMING\Others\UML\ClassDiagram\ClassDiagram_onlyProperties_CSharp\obj\Debug\netcoreapp3.1\ClassDiagram_onlyProperties_CSharp.csprojAssemblyReference.cache
+G:\David\PROGRAMMING\Others\UML\ClassDiagram\ClassDiagram_onlyProperties_CSharp\obj\Debug\netcoreapp3.1\ClassDiagram_onlyProperties_CSharp.AssemblyInfoInputs.cache
+G:\David\PROGRAMMING\Others\UML\ClassDiagram\ClassDiagram_onlyProperties_CSharp\obj\Debug\netcoreapp3.1\ClassDiagram_onlyProperties_CSharp.AssemblyInfo.cs
+G:\David\PROGRAMMING\Others\UML\ClassDiagram\ClassDiagram_onlyProperties_CSharp\obj\Debug\netcoreapp3.1\ClassDiagram_onlyProperties_CSharp.csproj.CoreCompileInputs.cache
+G:\David\PROGRAMMING\Others\UML\ClassDiagram\ClassDiagram_onlyProperties_CSharp\obj\Debug\netcoreapp3.1\ClassDiagram_onlyProperties_CSharp.dll
+G:\David\PROGRAMMING\Others\UML\ClassDiagram\ClassDiagram_onlyProperties_CSharp\obj\Debug\netcoreapp3.1\ClassDiagram_onlyProperties_CSharp.pdb
+G:\David\PROGRAMMING\Others\UML\ClassDiagram\ClassDiagram_onlyProperties_CSharp\obj\Debug\netcoreapp3.1\ClassDiagram_onlyProperties_CSharp.genruntimeconfig.cache
