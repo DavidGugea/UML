@@ -1,0 +1,13 @@
+D:\Tests\UML_CSHARP\bin\Debug\netcoreapp3.1\AssociationTypes.exe
+D:\Tests\UML_CSHARP\bin\Debug\netcoreapp3.1\AssociationTypes.deps.json
+D:\Tests\UML_CSHARP\bin\Debug\netcoreapp3.1\AssociationTypes.runtimeconfig.json
+D:\Tests\UML_CSHARP\bin\Debug\netcoreapp3.1\AssociationTypes.runtimeconfig.dev.json
+D:\Tests\UML_CSHARP\bin\Debug\netcoreapp3.1\AssociationTypes.dll
+D:\Tests\UML_CSHARP\bin\Debug\netcoreapp3.1\AssociationTypes.pdb
+D:\Tests\UML_CSHARP\obj\Debug\netcoreapp3.1\AssociationTypes.csprojAssemblyReference.cache
+D:\Tests\UML_CSHARP\obj\Debug\netcoreapp3.1\AssociationTypes.AssemblyInfoInputs.cache
+D:\Tests\UML_CSHARP\obj\Debug\netcoreapp3.1\AssociationTypes.AssemblyInfo.cs
+D:\Tests\UML_CSHARP\obj\Debug\netcoreapp3.1\AssociationTypes.csproj.CoreCompileInputs.cache
+D:\Tests\UML_CSHARP\obj\Debug\netcoreapp3.1\AssociationTypes.dll
+D:\Tests\UML_CSHARP\obj\Debug\netcoreapp3.1\AssociationTypes.pdb
+D:\Tests\UML_CSHARP\obj\Debug\netcoreapp3.1\AssociationTypes.genruntimeconfig.cache
