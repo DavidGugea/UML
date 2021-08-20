@@ -132,19 +132,22 @@ This is the structure for every property inside class diagrams:
     The default value of the property if it's not given
 <br/> 
 7. {Property}
-    Every property can have it's own properties. This properties are used to describe specific features and traits of the attributes inside the class diagram. Here are the properties that you must know:
-    <br/> 
-    * {id} - makes the property act as a key of the class. It's used exactly like an id inside relational databases
-    * {readOnly} - The property can only be read. New values can not be assigned to the property
-    * {subsets \<Property-Name>} - The property is a subset of another property
-    * {union} - Opposite of {subsets \<Property-Name>}. It combines all the properties that have the {subsets \<Property-Name>} property. Example:
-    ![Properties subsets & union of properties](/screenshots_for_notes/Properties_for_Properties_subsets_and_unions.PNG/)
-    * {redefines \<Property-Name>} - redefines a property from the class. This property can only be used inside inherited class diagrams ( e.g. overriden properties in C# )
-    * {ordered} signals that the property is ordered
-    * {seq} or {sequence} signals that the property is a sequence of elements
-    * {unique} means that there ar eno elements repeating themselves
-    * {nonunique} is the oppposite of {unique}
-    * {composite} defines that the property is built out of more parts and it needs these parts in order to become a whole. The property is responsible for adding and deleting its own parts. This property, {composite} of properties if essentially used when working with composition relationships between class diagrams
+Every property can have it's own properties. This properties are used to describe specific features and traits of the attributes inside the class diagram. Here are the properties that you must know:
+<br/> 
+* {id} - makes the property act as a key of the class. It's used exactly like an id inside relational databases
+* {readOnly} - The property can only be read. New values can not be assigned to the property
+* {subsets \<Property-Name>} - The property is a subset of another property
+* {union} - Opposite of {subsets \<Property-Name>}. It combines all the properties that have the {subsets \<Property-Name>} property. Example:
+
+![Properties subsets & union of properties](/screenshots_for_notes/Properties_for_Properties_subsets_and_unions.PNG)
+
+* {redefines \<Property-Name>} - redefines a property from the class. This property can only be used inside inherited class diagrams ( e.g. overriden properties in C# )
+* {ordered} signals that the property is ordered
+* {seq} or {sequence} signals that the property is a sequence of elements
+* {unique} means that there ar eno elements repeating themselves
+* {nonunique} is the oppposite of {unique}
+* {composite} defines that the property is built out of more parts and it needs these parts in order to become a whole. The property is responsible for adding and deleting its own parts. This property, {composite} of properties if essentially used when working with composition relationships between class diagrams
+
 
 Example of a class diagram with properties in code ( C# ):
 ![Guest class diagram, properties only](/screenshots_for_notes/Guest_OnlyProperties.PNG/)
