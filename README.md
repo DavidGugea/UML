@@ -133,7 +133,7 @@ This is the structure for every property inside class diagrams:
 <br/> 
 7. {Property}
 Every property can have it's own properties. This properties are used to describe specific features and traits of the attributes inside the class diagram. Here are the properties that you must know:
-<br/> 
+
 * {id} - makes the property act as a key of the class. It's used exactly like an id inside relational databases
 * {readOnly} - The property can only be read. New values can not be assigned to the property
 * {subsets \<Property-Name>} - The property is a subset of another property
