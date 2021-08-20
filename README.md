@@ -398,3 +398,108 @@ You can build inheritance groups and also name them.
 Inheritance groups also have properties:
 
 * {complete, disjoint}
+
+This property means that the group is complete. An instance cannot be classified as only the upper-class and it can't be classified as more than one class at the exact time
+
+![Inheritance Groups Property Complete Disjoint](/screenshots_for_notes/InheritanceGroups_Property_CompleteDisjoint.PNG)
+![Inheritance Groups Property Complete Disjoint Visualize](/screenshots_for_notes/InheritanceGroups_Property_CompleteDisjoint_Visualize.PNG)
+
+A person can only be a man or a woman. You can only have instance of the man or woman, not of the person. On top of that a person can't be a man and a female at the same time
+
+* {incomplete, overlapping}
+
+In this case, an instace can be member of the upper-class and/or any number of subclasses. The classification of "instance" is incomplete. Sometimes there are sub-classes involved, sometimes not.
+
+![Inheritance Groups Property Incomplete Overlapping](/screenshots_for_notes/InheritanceGroups_Property_IncompleteDisjoint.PNG)
+![Inheritance Groups Property Incomplete Overlapping Visualize](/screenshots_for_notes/InheritanceGroups_Property_IncompleteDisjoint_Visualize.PNG)
+
+We could also have a teenage or youngadult class, which makes the group incomplete. On top of that you can have an instance that is both a Person & a kid or a person & adult or a person alone or a kid & adult which would make the person a teenager.
+
+* {incomplete, disjoint} **DEFAULT if not given**
+The group is not complete and the sub classes can't share instances
+
+* {compete, overlapping}
+The group is complete and the sub classes can share instances
+
+#### Stereotypes
+
+Stereotypes can be used in all diagram types in UML. They don't change the meaning of the diagram, thye just give information about the purpose and role of that model. Example:
+
+![Stereotypes Example](/screenshots_for_notes/Stereotypes_Example.PNG)
+
+Here are the most important stereotypes:
+
+* \<\<auxiliary>> = the aim of the class is to help other classes in the program. They are usually used together with \<\<focus>>
+* \<\<focus>> = these classes build the logic of the program and they are helped by classes with the \<\<auxiliary>> stereotype
+* \<\<interface>> = defines an interface
+* \<\<utility>> = you can't build instance out of this class. It just serves as a toolbox for other classes. Example:
+
+![Utility Stereotype Example](/screenshots_for_notes/Stereotypes_UtilityExample.PNG)
+
+* \<\<dataType>> = you can define new data types that are unknown to uml
+* \<\<enumeration>> or \<\<enum>> = defines an enum
+
+You can also build your own stereotypes:
+
+![Self made stereotype](/screenshots_for_notes/Stereotypes_SelfMade.PNG)
+
+#### Abstract Class
+
+In order to build an abstract class you have to add {abstract} below its name inside the class diagram. An abstract class deifnes the future blueprint for a class:
+
+![Abstract Class](/screenshots_for_notes/AbstractClass.PNG)
+
+#### Template
+
+Templates are built exactly like in C# ( generics )
+
+![Template Example](/screenshots_for_notes/TemplateExample.PNG)
+
+In order to build osmething out of a collection you must use bind:
+
+**\<\<bind>>\<Template-Parameter-Name -> first_parameter, ..>**
+
+Code example:
+
+![Template Code Example UML diagram](/screenshots_for_notes/Template_CodeExample.PNG)
+
+Code C# :
+
+![Template Code Example](/screenshots_for_notes/Template_CodeExample_Code.PNG)
+
+#### Interfaces
+
+In order to build an interface you must use the \<\<inteface>> stereotype:
+
+![Interface example](/screenshots_for_notes/Inteface_Example.PNG)
+
+You can use interface in 2 ways:
+
+* realized interfaces
+* required interfaces
+
+Realized interfaces are working as upper classes:
+
+![Realized interfaces example ( UML )](/screenshots_for_notes/RealizedInterfaces.PNG)
+
+C# code:
+
+![Realized interfaces example ( C# code )](/screenshots_for_notes/RealizedInterface_Code.PNG)
+
+Required interfaces don't server as upper-classes but they are needed for classes to work
+
+![Required interfaces example ( UML )](/screenshots_for_notes/RequiredInterfaces.PNG)
+
+Java code:
+
+```Java
+interface Food{}
+
+class Dish {
+    public Food dish_food;
+}
+```
+
+You can also mix the types of interfaces that you use:
+
+![Mixed types of interfaces](/screenshots_for_notes/MixedTypesOfInterfaces.PNG)
