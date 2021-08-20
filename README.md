@@ -148,6 +148,7 @@ This is the structure for every property inside class diagrams:
 
 Example of a class diagram with properties in code ( C# ):
 ![Guest class diagram, properties only](/screenshots_for_notes/Guest_OnlyProperties.PNG/)
+
 Code in C#:
 ![Guest class diagram, properties only](/screenshots_for_notes/Guest_OnlyProperties_code.PNG/)
 
@@ -494,7 +495,6 @@ Java code:
 
 ```Java
 interface Food{}
-
 class Dish {
     public Food dish_food;
 }
