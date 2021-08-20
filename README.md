@@ -150,9 +150,11 @@ Every property can have it's own properties. This properties are used to describ
 
 
 Example of a class diagram with properties in code ( C# ):
+
 ![Guest class diagram, properties only](/screenshots_for_notes/Guest_OnlyProperties.PNG/)
 
 Code in C#:
+
 ![Guest class diagram, properties only](/screenshots_for_notes/Guest_OnlyProperties_code.PNG/)
 
 #### Operations / Methods
