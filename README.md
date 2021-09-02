@@ -508,3 +508,13 @@ class Dish {
 You can also mix the types of interfaces that you use:
 
 ![Mixed types of interfaces](/screenshots_for_notes/MixedTypesOfInterfaces.PNG)
+
+## 3. Objektdiagramm / Object diagram
+
+Class diagrams are used to build the blueprint for objects. We use object diagrams to represent those objects. We can use the dependency \<instantiate> between a class diagram and an object diagram to show where the object diagram came from. Object diagrams are used in different stages of the program to represent an objects state. If no object diagrams have been built based on a class diagram, then it's probably a good idea to delete the class diagram. Object diagrams also help verify the correctitude of class diagrams.
+
+Example for object diagram:
+
+![Object diagram](/ObjectDiagram/ObjectDiagramExample_InstantiateClassDiagram.PNG)
+
+Object diagrams, just like class diagrams, can build connections with each other. However, in this case, they are not called "associations" anymore, we call them ***links***. If two class diagrams build an association between each other, then a link between their object diagrams must be built as well. This is not a rule but if two classes are associated with each other, then it's only logical that the object diagrams should too. If this is not the case then maybe we should change something inside the class diagram. Maybe the association between the classes is not correct. Links have everything that associations have ( association name, roles, reading direction, etc. ). The only thing different is the multiplicity, since one object tcan only link to one single object. If you want to link one object to 3 more objects, then you can build more links. Here is an example of an object diagram with links:
