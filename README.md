@@ -501,7 +501,7 @@ Java code:
 ```Java
 interface Food{}
 class Dish {
-    public Food dish_food;
+    public Food dish_food;G$
 }
 ```
 
@@ -518,3 +518,5 @@ Example for object diagram:
 ![Object diagram](/ObjectDiagram/ObjectDiagramExample_InstantiateClassDiagram.PNG)
 
 Object diagrams, just like class diagrams, can build connections with each other. However, in this case, they are not called "associations" anymore, we call them ***links***. If two class diagrams build an association between each other, then a link between their object diagrams must be built as well. This is not a rule but if two classes are associated with each other, then it's only logical that the object diagrams should too. If this is not the case then maybe we should change something inside the class diagram. Maybe the association between the classes is not correct. Links have everything that associations have ( association name, roles, reading direction, etc. ). The only thing different is the multiplicity, since one object tcan only link to one single object. If you want to link one object to 3 more objects, then you can build more links. Here is an example of an object diagram with links:
+
+![Object diagram with links](/ObjectDiagram/ObjectDiagramLinks.PNG)
