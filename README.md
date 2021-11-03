@@ -139,7 +139,7 @@ Every property can have it's own properties. This properties are used to describ
 * {subsets \<Property-Name>} - The property is a subset of another property
 * {union} - Opposite of {subsets \<Property-Name>}. It combines all the properties that have the {subsets \<Property-Name>} property. Example:
 
-![Properties subsets & union of properties](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/Properties_for_Properties_subsets_and_unions.PNG)
+![Properties subsets & union of properties](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///Properties_for_Properties_subsets_and_unions.PNG)
 
 * {redefines \<Property-Name>} - redefines a property from the class. This property can only be used inside inherited class diagrams ( e.g. overriden properties in C# )
 * {ordered} signals that the property is ordered
@@ -151,11 +151,11 @@ Every property can have it's own properties. This properties are used to describ
 
 Example of a class diagram with properties in code ( C# ):
 
-![Guest class diagram, properties only](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/Guest_OnlyProperties.PNG/)
+![Guest class diagram, properties only](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///Guest_OnlyProperties.PNG/)
 
 Code in C#:
 
-![Guest class diagram, properties only](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/Guest_OnlyProperties_code.PNG/)
+![Guest class diagram, properties only](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///Guest_OnlyProperties_code.PNG/)
 
 #### Operations / Methods
 
@@ -226,17 +226,17 @@ The UML structure for methods is :
 
 A binary association represents two class diagrams that "know" about each other.
 
-![Binary Association](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/BinaryAssociation.PNG)
+![Binary Association](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///BinaryAssociation.PNG)
 
 In this example, Guest can interact with Restaurant and vice-versa.
 
 #### Association name and reading direction
 
-![Association name & reading direction](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/AssociationName_ReadingDirection.PNG)
+![Association name & reading direction](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///AssociationName_ReadingDirection.PNG)
 
 #### Multiplicity of associations
 
-![Multiplicity of associations](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/AssociationMultiplicity.PNG)
+![Multiplicity of associations](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///AssociationMultiplicity.PNG)
 
 One Guest can visit only one restaurant.
 One Restaurant can contain up to 50 Guests
@@ -246,7 +246,7 @@ One Restaurant can contain up to 50 Guests
 You can use association roles in order to describe the role of a class in a relation/association with another class
 Let's say that a smal compnay buys something from a big company and then sells it to you.
 
-![Association Roles](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/Association_Roles.PNG)
+![Association Roles](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///Association_Roles.PNG)
 
 #### What is an association end ?
 
@@ -259,7 +259,7 @@ An association end is a connection between the line depicting an association and
 * {redefines \<Association-End>} - redefines another association end
 * {ordered} signals that the classifier must be ordered. Example:
 
-![Association properties](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/AssociationProperty_Ordered.PNG)
+![Association properties](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///AssociationProperty_Ordered.PNG)
 
 The menu has to be served by the waiter in an ordered manner ( not dessert first. )
 
@@ -272,7 +272,7 @@ These properties are strictly for association ends and they determine for exampl
 
 An XOR constraint specifies that only one of the two associations can exist at the same time:
 
-![Association Constraints](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/AssociationConstraints.PNG)
+![Association Constraints](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///AssociationConstraints.PNG)
 
 #### Association Navigation
 
@@ -285,40 +285,40 @@ There are 3 types of navigation:
 
 A bidirectional navigation allows both classes to know each other. They can both interact with each other
 
-![Bidirectional Navigation](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/BidirectionalNavigation.PNG)
+![Bidirectional Navigation](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///BidirectionalNavigation.PNG)
 
 Example:
 
-![Bidirectional Navigation](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/BidirectionalNavigation_Example.PNG)
+![Bidirectional Navigation](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///BidirectionalNavigation_Example.PNG)
 
 Code ( C# ):
 
-![Bidirectional Navigation](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/BidirectionalNavigation_Example_Code.PNG)
+![Bidirectional Navigation](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///BidirectionalNavigation_Example_Code.PNG)
 
 
 #### Prohibited Navigation
 
 A prohibited navigation means that the classes don't know each other and aren't allowed to interact with each other
 
-![Prohibited Navigation](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/ProhibitedNavigation.PNG)
+![Prohibited Navigation](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///ProhibitedNavigation.PNG)
 
 #### Unspecified Navigation
 
 By using an unspecified navigation we avoid setting a strict prohibition or a force navigation between the elements. The navigation between the cases is allowed but not mendatory
 
-![Unspecified Navigation](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/UnspecifiedNavigation.PNG)
+![Unspecified Navigation](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///UnspecifiedNavigation.PNG)
 
 #### Unidirectional Navigation
 
 A unidirectional navigation allows the navigation only on one side
 
-![Unidirectional Navigation](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/UnidirectionalNavigation.PNG)
+![Unidirectional Navigation](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///UnidirectionalNavigation.PNG)
 
 #### Partial Navigation
 
 A partial navigation is only partially defined. On one side, the navigation is direct while on the other side it is not defined, the interaction between the classes on the undefined side is possible but not mendatory
 
-![Partial Navigation](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/PartialNavigation.PNG)
+![Partial Navigation](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///PartialNavigation.PNG)
 
 In this example the thief knows about the police and can interact with them. Police on the other side might or might not know about him and be able to interact with him.
 
@@ -326,35 +326,35 @@ In this example the thief knows about the police and can interact with them. Pol
 
 The ownership navigation sohws, as the name says, that a class owns anohter class. In this case the dish, which acts as a product is owned by the guest, which is a consumer
 
-![Ownership](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/Ownership.PNG)
+![Ownership](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///Ownership.PNG)
 
 #### Reflexive Association
 
 Reflexive associations are associations between classes and themselves, it's when a class has an instances of itself inside itself
 
-![Reflexive Association](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/ReflexiveAssociation.PNG)
+![Reflexive Association](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///ReflexiveAssociation.PNG)
 
 Code ( C# ):
 
-![Reflexive Association](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/ReflexiveAssociation_Code.PNG)
+![Reflexive Association](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///ReflexiveAssociation_Code.PNG)
 
 #### N-ary Association
 
 An n-ary association is an association between multiple classes. Most programming language don't have a support for this type of association, so you'll have to build a special class instead of the n-ray association.
 
-![N-ary Association](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/n_ary_association.PNG)
+![N-ary Association](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///n_ary_association.PNG)
 
 #### Qualified Association
 
 A qualified association needs a qualifier that will be used on the first class in order to reference the second class. The qualifier will work like a foreign key does in databases.
 
-![Qualified Association](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/QualifiedAssociation.PNG)
+![Qualified Association](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///QualifiedAssociation.PNG)
 
 #### Association Class
 
 In certain cases you might have some properties or methods that don't match the ideas of the classes that you've built, so you might want to build an association class because that's where they fit best. You might also want to be more specific about the association and make a class for it
 
-![Association Class](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/AssociationClass.PNG)
+![Association Class](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///AssociationClass.PNG)
 
 You don't have to name the association if you have the association class but if you do, they both must have the same name
 
@@ -365,7 +365,7 @@ In this case MenuPoint wouldn't have matched the ideas of the two classes, Waite
 
 The aggregation is a special form of binary association where you have one single Whole and more parts that together build the whole. In the case of aggregation, the whole can still exist if some parts are remove and vice-versa. The parts can exist individually without the whole.
 
-![Aggregation](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/Aggregation.PNG)
+![Aggregation](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///Aggregation.PNG)
 
 In this examle the restaurant which is the whole, has an aggergation built with table & chair. A restaurant is still a restaurant even without tables and chairs. A table and a chair can still eixst individually outside restaurants....
 
@@ -373,13 +373,13 @@ In this examle the restaurant which is the whole, has an aggergation built with 
 
 A composition is strong form of aggergation where the whole can't exist without all the parts.
 
-![Composition](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/Composition.PNG)
+![Composition](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///Composition.PNG)
 
 #### Dependency
 
 A dependency is a Client-Supplier association and **servers for documentation purposes only**. It signals that a class needs another class for its specification or implementation.
 
-![Dependency](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/Dependency.PNG)
+![Dependency](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///Dependency.PNG)
 
 There are several types of dependencies:
 
@@ -395,11 +395,11 @@ There are several types of dependencies:
 
 #### Inheritance
 
-![Inheritance](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/Inheritance.PNG)
+![Inheritance](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///Inheritance.PNG)
 
 You can build inheritance groups and also name them.
 
-![Inheritance Groups](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/InheritanceGroups.PNG)
+![Inheritance Groups](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///InheritanceGroups.PNG)
 
 Inheritance groups also have properties:
 
@@ -407,8 +407,8 @@ Inheritance groups also have properties:
 
 This property means that the group is complete. An instance cannot be classified as only the upper-class and it can't be classified as more than one class at the exact time
 
-![Inheritance Groups Property Complete Disjoint](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/InheritanceGroups_Property_CompleteDisjoint.PNG)
-![Inheritance Groups Property Complete Disjoint Visualize](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/InheritanceGroups_Property_CompleteDisjoint_Visualize.PNG)
+![Inheritance Groups Property Complete Disjoint](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///InheritanceGroups_Property_CompleteDisjoint.PNG)
+![Inheritance Groups Property Complete Disjoint Visualize](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///InheritanceGroups_Property_CompleteDisjoint_Visualize.PNG)
 
 A person can only be a man or a woman. You can only have instance of the man or woman, not of the person. On top of that a person can't be a man and a female at the same time
 
@@ -416,8 +416,8 @@ A person can only be a man or a woman. You can only have instance of the man or 
 
 In this case, an instace can be member of the upper-class and/or any number of subclasses. The classification of "instance" is incomplete. Sometimes there are sub-classes involved, sometimes not.
 
-![Inheritance Groups Property Incomplete Overlapping](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/InheritanceGroups_Property_IncompleteDisjoint.PNG)
-![Inheritance Groups Property Incomplete Overlapping Visualize](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/InheritanceGroups_Property_IncompleteDisjoint_Visualize.PNG)
+![Inheritance Groups Property Incomplete Overlapping](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///InheritanceGroups_Property_IncompleteDisjoint.PNG)
+![Inheritance Groups Property Incomplete Overlapping Visualize](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///InheritanceGroups_Property_IncompleteDisjoint_Visualize.PNG)
 
 We could also have a teenage or youngadult class, which makes the group incomplete. On top of that you can have an instance that is both a Person & a kid or a person & adult or a person alone or a kid & adult which would make the person a teenager.
 
@@ -431,7 +431,7 @@ The group is complete and the sub classes can share instances
 
 Stereotypes can be used in all diagram types in UML. They don't change the meaning of the diagram, thye just give information about the purpose and role of that model. Example:
 
-![Stereotypes Example](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/Stereotypes_Example.PNG)
+![Stereotypes Example](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///Stereotypes_Example.PNG)
 
 Here are the most important stereotypes:
 
@@ -440,26 +440,26 @@ Here are the most important stereotypes:
 * \<\<interface>> = defines an interface
 * \<\<utility>> = you can't build instance out of this class. It just serves as a toolbox for other classes. Example:
 
-![Utility Stereotype Example](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/Stereotypes_UtilityExample.PNG)
+![Utility Stereotype Example](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///Stereotypes_UtilityExample.PNG)
 
 * \<\<dataType>> = you can define new data types that are unknown to uml
 * \<\<enumeration>> or \<\<enum>> = defines an enum
 
 You can also build your own stereotypes:
 
-![Self made stereotype](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/Stereotypes_SelfMade.PNG)
+![Self made stereotype](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///Stereotypes_SelfMade.PNG)
 
 #### Abstract Class
 
 In order to build an abstract class you have to add {abstract} below its name inside the class diagram. An abstract class deifnes the future blueprint for a class:
 
-![Abstract Class](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/AbstractClass.PNG)
+![Abstract Class](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///AbstractClass.PNG)
 
 #### Template
 
 Templates are built exactly like in C# ( generics )
 
-![Template Example](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/TemplateExample.PNG)
+![Template Example](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///TemplateExample.PNG)
 
 In order to build osmething out of a collection you must use bind:
 
@@ -467,17 +467,17 @@ In order to build osmething out of a collection you must use bind:
 
 Code example:
 
-![Template Code Example UML diagram](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/Template_CodeExample.PNG)
+![Template Code Example UML diagram](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///Template_CodeExample.PNG)
 
 Code C# :
 
-![Template Code Example](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/Template_CodeExample_Code.PNG)
+![Template Code Example](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///Template_CodeExample_Code.PNG)
 
 #### Interfaces
 
 In order to build an interface you must use the \<\<inteface>> stereotype:
 
-![Interface example](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/Inteface_Example.PNG)
+![Interface example](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///Inteface_Example.PNG)
 
 You can use interface in 2 ways:
 
@@ -486,15 +486,15 @@ You can use interface in 2 ways:
 
 Realized interfaces are working as upper classes:
 
-![Realized interfaces example ( UML )](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/RealizedInterfaces.PNG)
+![Realized interfaces example ( UML )](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///RealizedInterfaces.PNG)
 
 C# code:
 
-![Realized interfaces example ( C# code )](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/RealizedInterface_Code.PNG)
+![Realized interfaces example ( C# code )](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///RealizedInterface_Code.PNG)
 
 Required interfaces don't server as upper-classes but they are needed for classes to work
 
-![Required interfaces example ( UML )](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/RequiredInterfaces.PNG)
+![Required interfaces example ( UML )](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///RequiredInterfaces.PNG)
 
 Java code:
 
@@ -507,7 +507,7 @@ class Dish {
 
 You can also mix the types of interfaces that you use:
 
-![Mixed types of interfaces](structuraldiagrams/classdiagram/classdiagramscreenshotsfornotes/MixedTypesOfInterfaces.PNG)
+![Mixed types of interfaces](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///MixedTypesOfInterfaces.PNG)
 
 ## 3. Objektdiagramm / Object diagram
 
