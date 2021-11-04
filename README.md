@@ -524,3 +524,18 @@ Object diagrams, just like class diagrams, can build connections with each other
 ## 4. Kompositionsstrukturdiagramm  / Composite structure diagram
 
 Composite structure diagrams show how components ( classes ) work together inside a class. They show the internal structure of a class. They are also called architecture diagrams.
+
+A Part is used to model a subset of components that might be contained inside a class.
+Example:
+
+![Part example](StructuralDiagrams/CompositeStructureDiagram/Notes/PartStructureExample.PNG)
+
+Even if a football match technically needs more people in order to function, the part ```Footballers``` represents only a small subset of all the objects of the class ```Person``` inside the class ```FootballMatch```.
+If a part has no relationship with other parts then it is build with a dashed line around itself.
+
+![Part with no relationship is drawn with a dashed line](StructuralDiagrams/CompositeStructureDiagram/Notes/PartNoRelationship.PNG)
+
+The following example using a class diagram with composition might make the use cases of parts clearer:
+
+![Class diagram composition example](StructuralDiagrams/CompositeStructureDiagram/Notes/ClassDiagramCompositionExample.PNG)
+![Part structure from class diagram with composition](StructuralDiagrams/CompositeStructureDiagram/Notes/PartStructureFromClassDiagramWtihComposition.PNG)
