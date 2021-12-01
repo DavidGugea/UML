@@ -523,7 +523,9 @@ Object diagrams, just like class diagrams, can build connections with each other
 
 ## 4. Kompositionsstrukturdiagramm  / Composite structure diagram
 
-Composite structure diagrams show how components ( classes ) work together inside a class. They show the internal structure of a class. They are also called architecture diagrams.
+### 1. Part
+
+Composite structure diagrams show how components work together inside a class. They show the internal structure of a class. They are also called architecture diagrams.
 
 A Part is used to model a subset of components that might be contained inside a class.
 Example:
@@ -538,4 +540,109 @@ If a part has no relationship with other parts then it is build with a dashed li
 The following example using a class diagram with composition might make the use cases of parts clearer:
 
 ![Class diagram composition example](StructuralDiagrams/CompositeStructureDiagram/Notes/ClassDiagramCompositionExample.PNG)
+
+In this class diagram you can see the broad class structure and you can see that a ```FootballMatch``` needs 22 object of the class ```Person``` and it might also interact with a ```Ball```, but you don't know exactly how the classes ```Person``` and ```Ball``` interact with each other internally. This is what we are using the composite structure diagram for. It reveals how the internal components of a class interact with each other and helps us visualize those actions much better than a class diagram can do. Here is the composite structure diagram for the ```FootballMatch``` that shows how the classes ```Person``` and ```Ball``` interact with each other, interally:
+
 ![Part structure from class diagram with composition](StructuralDiagrams/CompositeStructureDiagram/Notes/PartStructureFromClassDiagramWtihComposition.PNG)
+
+Parts are used to desribe the internal use of classes and help you visualize a model for a specific context that you wouldn't otherwise be able to, outside of a composite structure diagram.
+
+### 2. Port and connector
+
+A port describes an interaction point between parts, interfaces, classes, and so on inside a composite structure diagram. Connectors connect parts and ports.
+
+Here is an example:
+
+![Port and connector example](StructuralDiagrams/CompositeStructureDiagram/Notes/PortAndConnectorExample.PNG)
+
+In this example the TV and the CableConnection are the parts. We have a connector that connects two ports with each other. One port is the port AntennaInput, that comes from the TV part and the other port is the AntennaOutput port that comes from the CableConnection part.
+
+Connectors don't have to always connects components of the same type ( port, part, interface, etc. ), they can also connect a port and a part together, for example:
+
+![Connector connecting a port and a part example](StructuralDiagrams/CompositeStructureDiagram/Notes/ConnectorBetweenPortAndPart.PNG)
+
+In this example, the connector with the name SatCable connects the SatInput port from the SatReceiver part with the SatAntenna part.
+That means that the SatCable connects directly to the SatAntenna, it doesn't need a port like the SatReceiver needs the port SatInput.
+
+Interfaces can also be used in composite structure diagrams. Interfaces can be of two types in this type of diagram:
+
+* Realized interfaces : these interfaces work basically as upper-classes. They are needed for the implementation and they are drawn with a ball-symbol.
+* Required interfaces : these interfaces aren't used as upper-classes, they are still needed for the implementation but the component that uses this interface, doesn't need to inherit from it. This type of interfaces are drawn using a socket-symbol.
+
+Here is an example:
+
+![Examples of interface-usage in composite structure diagrams](StructuralDiagrams/CompositeStructureDiagram/Notes/InterfacesInCompositeStructureDiagrams.PNG)
+
+It is also possible to define muliple interfaces to one single port. When multiple interfaces are assigned to a port, that port now has become a **complex port**.
+
+Example:
+
+![Examples of interface-usage in composite structure diagrams](StructuralDiagrams/CompositeStructureDiagram/Notes/ComplexPortExample.PNG)
+
+A behavior port is a port that connects certain components ( part, ports, interfaces, etc. ) to a certain state of the classifier it belongs to ( the 'classifier' is the 'class' that it belongs to )
+
+![Example of a behavior port](StructuralDiagrams/CompositeStructureDiagram/Notes/BehaviorPortExample.PNG)
+
+In this example the port with the name 'p' interacts with 2 interfaces ( powertrain and power ). The port is a behavior port since the interfaces that the port interacts with are in direct connection with a certain state of the engine ( for brevary that state could be on/off ).
+
+Here is the UML diagram for an example containing a behavior port:
+
+![Example of a behavior 2 port](StructuralDiagrams/CompositeStructureDiagram/Notes/BehaviorPortExample2.PNG)
+
+Here is an example of a composite structure diagram in C#:
+
+![Implementing a composite structure diagram using C#](StructuralDiagrams/CompositeStructureDiagram/Notes/CompositeStructureDiagramImplementationExample.PNG)
+
+```CSharp
+public class Program
+{
+    static void Main(string[] args)
+    {
+        SatReceiver sat = new SatReceiver();
+
+        Console.WriteLine(sat.scartConnection.GetTvSignal("sender1"));
+        Console.WriteLine(sat.scartConnection.GetTvSignal("sender2"));
+        Console.WriteLine(sat.scartConnection.GetTvSignal("sender3"));
+    }
+}
+public interface TvSignal
+{
+    string GetTvSignal(string sender);
+}
+public class SatReceiver
+{
+    private string signalSender1;
+    private string signalSender2;
+    private string GetSignalSender1() => signalSender1;
+    private string GetSignalSender2() => signalSender2;
+
+    public class ScartConnection : TvSignal
+    {
+        private readonly SatReceiver satReceiver;
+
+        public ScartConnection(SatReceiver satReceiver) => this.satReceiver = satReceiver;
+
+        public String GetTvSignal(string sender)
+        {
+            switch (sender)
+            {
+                case "sender1":
+                    return this.satReceiver.GetSignalSender1();
+                case "sender2":
+                    return this.satReceiver.GetSignalSender2();
+                default:
+                    return "Error";
+            }
+        }
+    }
+
+    public ScartConnection scartConnection { get; private set; }
+    public SatReceiver()
+    {
+        signalSender1 = "Tv signal from sender 1";
+        signalSender2 = "Tv signal from sender 2";
+        scartConnection = new ScartConnection(this);
+    }
+}
+```
+
