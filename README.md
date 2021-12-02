@@ -646,3 +646,39 @@ public class SatReceiver
 }
 ```
 
+### 3. Collaboration
+
+Collaborations describe the structure of objects, that work together to accomplish a certain task inside the classifier. These objects play a **role** in the collaboration that helps accomplish that task. The roles can be connected through normal connections, that we've already learned.
+
+The idea behind a collaboration is to see what are the elements that work together internally, inside a classifier, in order to accomplish a certain task.
+
+Here is an example:
+
+![Collaboration in composite structure diagram](StructuralDiagrams/CompositeStructureDiagram/Notes/CollborationStructure.PNG)
+
+Inside the collaboration **Sale**, you need two objects that takes the roles of **buyer** and **salesperson**. The connection specifies that the two objects must communicate so that a **sale** can take place.
+
+If certain roles need certain properties/method in order to play the role of the collaboration tha take take part of, you can describe that situation like this:
+
+![Collaboration with needed properties to act like the given roles composite structure diagram](StructuralDiagrams/CompositeStructureDiagram/Notes/CollaborationWithPropertiesForRoles.PNG)
+
+In this case, we need an object that contains the property ```moneyAmount``` in order for that object to act as the role of a **buyer**. We also need an object that contains the property ```offer``` in order for that object to complete the role of a **salesperson**.
+
+### 4. Collaboration Application
+
+With a collaboration application, you can take the use of an already existing collaboration and use that in a specific situation. 
+You can think about a collaboration application as an instance of a collaboration. 
+
+Here is an example:
+
+![Collaboration application example](StructuralDiagrams/CompositeStructureDiagram/Notes/CollaborationApplication.PNG)
+
+In the example before this one we've had the collaboration ```Sale```. Now, this collaboration application with the name **FootballTicketsSale**, implements the collaboration that we've already seen, that being **Sale**. You can see that the roles **Buyer** and **Salesperson** haven't changed, since they are not allowed to.
+
+There is also an alternative notation for the collaboration application:
+
+![Collaboration application alternative notation](StructuralDiagrams/CompositeStructureDiagram/Notes/CollaborationApplicationAlternativeNotation.PNG)
+
+You can have more collaborations in an collaboration application, you aren't restricted to only rely on one single collaboration.
+
+![Collaboration application with more applications](StructuralDiagrams/CompositeStructureDiagram/Notes/CollaborationApplicationMoreApplications.PNG)
