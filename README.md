@@ -10,7 +10,7 @@ This repository contains all the chapters of my UML book. Chapters in order:
 3. Objektdiagramm / Object diagram
 4. Kompositionsstrukturdiagramm  / Composite structure diagram
 5. Komponentendiagramm / Component Diagram
-6. Verteilungsdiagramm / Distribution Diagram
+6. Verteilungsdiagramm / Deployment Diagram
 7. Paketdiagram / Package Diagram
 
 #### Part 2. Verhaltensdiagramme / Behavioral Diagrams
@@ -682,3 +682,16 @@ There is also an alternative notation for the collaboration application:
 You can have more collaborations in an collaboration application, you aren't restricted to only rely on one single collaboration.
 
 ![Collaboration application with more applications](StructuralDiagrams/CompositeStructureDiagram/Notes/CollaborationApplicationMoreApplications.PNG)
+
+## 5. Komponentendiagramm / Component Diagram
+
+Component diagrams are widely used in software architecture. They are usually used in parallel with Deployment Diagrams.
+
+Here is what a component looks like and how it interacts with the outside assemblies:
+
+![Component Diagram](StructuralDiagrams/ComponentDiagram/Notes/ComponentDiagram.PNG)
+
+A component represents an element of a system. Its behavior can be represented by the realized and required interfaces that it works with. Interfaces can be bound to ports, just like a Composite structure diagram ( Chapter 4 ). 
+
+There are alternative ways of notation elements for interfaces. You can also use inheritence and ```<<use>>``` dependency for interfaces, which is a lot more verbose:
+
