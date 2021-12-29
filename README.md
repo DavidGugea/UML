@@ -685,6 +685,8 @@ You can have more collaborations in an collaboration application, you aren't res
 
 ## 5. Komponentendiagramm / Component Diagram
 
+### Components
+
 Component diagrams are widely used in software architecture. They are usually used in parallel with Deployment Diagrams.
 
 Here is what a component looks like and how it interacts with the outside assemblies:
@@ -695,3 +697,83 @@ A component represents an element of a system. Its behavior can be represented b
 
 There are alternative ways of notation elements for interfaces. You can also use inheritence and ```<<use>>``` dependency for interfaces, which is a lot more verbose:
 
+![Component Diagram with verbose interfaces](StructuralDiagrams/ComponentDiagram/Notes/ComponentDiagramVerboseInterface.PNG)
+
+There are also other ways of representing interfaces that are bound to your components. Another way of doing it is the **Black-Box-Vision**:
+
+![Component Diagram Black Box Vision](StructuralDiagrams/ComponentDiagram/Notes/ComponentDiagramBlackBox.PNG)
+
+Components can also contain other components themselves. They usually have the ```<<subsystem>>``` stereotype. Here are all stereotypes that a component can have and their meaning:
+
+* ```<<implement>>```. This type of component doesn't contain any personal specification. It repreesnts the implementation of other components that have the ```<<specification>>``` stereotype.
+* ```<<specification>>```. These components represent a provided interface. They realization is done by ```<<implement>>``` components.
+* ```<<entity>>``` This represents components that contain persistent information, something like a database for example.
+* ```<<process>>```. A processed component is a transaction-based component that works with the ACID-principle:
+    * Atomic: The components either complete their actions or they don't. If a runtime error occurs, all the changes that have made up to that point will be reversed
+    * Consistent: All the data is in a consistent state before and after the actions have started
+    * Isolated: Every action will be executed in isolation. That means that it is invisible to other transactions.
+    * Durability: Every change made to files will be permanently saved
+* ```<<service>>```. The ```<<service>>``` components are stateless, functional components that provide services for other components
+* ```<<subsystem>>```. A component that uses the ```<<subsystem>>``` stereotype is used usually used to decompose bigger systems. They represent a small portion of bigger systems.
+* ```<<buildComponent>>```. These are components that are not a part of the development system but they are needed in order to build it. These can be IDEs, Compilers or VCS.
+
+You can also expand the black box vision and design everything that there is to a component in one single box. This is called the **White box vision**:
+
+
+![Component Diagram White Box Vision](StructuralDiagrams/ComponentDiagram/Notes/ComponentDiagramWhiteBox.PNG)
+
+
+### Connector
+
+There are 2 types of connectors when it comes to component diagrams:
+
+* Assembly Connector
+* Delegation Connector
+
+An **Assembly Connector** represents the connection between two components and specifies that a component needs services from another component.
+
+Assembly connectors are, as you've already seen, used with the ball-and-socket symbol. 
+
+A **Delegation Connetor** represents a connection between an external interface or port and an internal component of another component.
+
+Here is an example of assembly- and delegation connectors:
+
+![Delegation Connectors](StructuralDiagrams/ComponentDiagram/Notes/DelegationConnectorsAndAssemblyConnectors.PNG)
+
+### Artifcats
+
+An artifact is a physical information entity that is needed or built in the development process.
+
+These can be:
+
+* Files with source code
+* ```.exe``` files
+* Databases
+* Tables of databases
+* written documentation
+* UML-Models
+* E-Mails
+* etc.
+
+Here is an exmaple of how an artifact looks like:
+
+![Artifact example](StructuralDiagrams/ComponentDiagram/Notes/ArtifactExample.PNG)
+
+An artifact can have different types of stereotypes:
+
+* ```<<script>>```. This is a script file ( e.g. javascript or php-file)
+* ```<<source>>```. A ```<<source>>``` file contains source code and can be compiled by  an ```<<executable>>``` file
+* ```<<executable>>```. This stereotype represents an executable file. On the Windows OS this would be an ```.exe``` file, on Linux it would be a ```.bin``` file.
+* ```<<document>>```. This artifact represents a document that is neither ```<<source>>``` nor ```<<executable>>```. This artifact is usually a document that can't be assigned to other stereotypes.
+* ```<<file>>```. This is a general file
+* ```<<library>>```. This represents a library of code ( this could contain classes, functions, etc. ).
+
+Artifact can also contain other internal artifacts.
+In order to show that an artifact is used by a component you can add the stereotype ```<<manifest>>``` to the Manifest-Connection.
+
+![Manifest Artifact](StructuralDiagrams/ComponentDiagram/Notes/manifestArtifact.PNG)
+
+If you want to describe the manifest-connection in more detail you can use the following stereotypes:
+
+* ```<<tool-generated>>```. The artifact was generated by a tool. There are a lot of tools, for example, that can generate artifacts directly from UML Diagrams.
+* ```<<custom code>>```. The artifact was custom written by a user.
