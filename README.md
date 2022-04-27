@@ -855,3 +855,49 @@ Example:
 
 ![Communication Path](StructuralDiagrams/DeploymentDiagram/CommunicationPath.PNG)
 
+
+# 7. Paketdiagram / Package Diagram
+
+## Use Cases
+
+Package diagrams are used in the early phases of software development (like analysis or design ) in order to structure the model vertically as well as horizontally.
+
+Through horizontal structuring we mean the opportunity to bundle UML elements that work together in packages.
+
+Packages can have sub-packages and that is the vertical structuring. The packages on the top can contain the whole project while the sub-packages at the bottom can describe the details of the project.
+
+With the help of vertical structuring we can build certain levels of abstraction of a model and we also have the possibility to zoom into the details if needed.
+
+You should structure your model horizontally and vertically in order to build a certain case of abstraction and make it easier to use and understand.
+
+## Notation elements
+
+### Package
+
+![](StructuralDiagrams/PackageDiagram/PackageDiagram.PNG)
+
+Package diagrams group elements together and namespaces that pack these elements together.
+In the package diagram above you can see the pacakge ```DataManagement``` that contains the class ```Administrator``` and another sub-package ```Database```.
+
+There is also another notation for package diagrams:
+
+![](StructuralDiagrams/PackageDiagram/PackageDiagramAlt.PNG)
+
+The above diagrams are semantically the same.
+
+All the elements inside a package **must** have different names. Although, elements that are in different packages can have names that are the same.
+
+![](StructuralDiagrams/PackageDiagram/SameNameDifferentNamespace.PNG)
+
+
+The sub-packages with the same name in these 2 different packages can't however be identified using theyr ***unqualified name*** ( ```Database``` ) since they can't be differentiated. In this case you have to use their ***qualified name*** which means adding the name of their package followed by 2 colons and the name of the sub-package: ***```DataManagement::Database```*** and ***```RestaurantSystem::Database```***.
+
+The elements from a package are not separable from the package. If you delete a package, you delete all the elements inside of it automatically.
+
+Even if you can't see any elements inside a package that doesn't mean that it's empty. UML allows you to hide certain arbitrary sub-packages in order to make the diagram clear.
+
+All the elements of a package are visible to one another. Just like in class diagrams, the visibility of an element inside a package diagram can be change using:
+
+* ```public (+)```
+* ```private (-)```
+* ```protected (#)```
