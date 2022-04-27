@@ -4,7 +4,7 @@ This repository contains all the chapters of my UML book. Chapters in order:
 
 1. Einführung / Starting out
 
-#### Part 1. Strukturdiagramme / Structure Diagrams
+## Part 1. Strukturdiagramme / Structure Diagrams
 
 2. Klassendiagram / Class diagram
 3. Objektdiagramm / Object diagram
@@ -13,20 +13,20 @@ This repository contains all the chapters of my UML book. Chapters in order:
 6. Verteilungsdiagramm / Deployment Diagram
 7. Paketdiagram / Package Diagram
 
-#### Part 2. Verhaltensdiagramme / Behavioral Diagrams
+## Part 2. Verhaltensdiagramme / Behavioral Diagrams
 
 8. Anwedungsfalldiagramm / Application Diagram
 9. Aktivitätsdiagramm / Activity Diagram
 10. Zustandsdiagramm / State diagram
 
-#### Part 3. Interaktionsdiagramme / Interaction Diagrams
+## Part 3. Interaktionsdiagramme / Interaction Diagrams
 
 11. Sequenzdiagramm / Sequence diagram
 12. Kommunikationsdiagramm / Communication Diagramm
 13. Timing-Diagramm 
 14. Interakationsübersichtdiagramm / Interaction Overview Diagram
 
-#### Part 4. Metamodellierung / UML Meta Modelling
+## Part 4. Metamodellierung / UML Meta Modelling
 15. Profildiagramm / Profile Diagram
 
 ---
@@ -89,7 +89,7 @@ Once the software passes through all the stages without any issues, a maintenace
 
 # Part 1. Strukturdiagramme / Structure Diagrams
 
-##  2. Klassendiagram / Class diagram
+#  2. Klassendiagram / Class diagram
 
 #### Attributes / Properties
 
@@ -509,7 +509,7 @@ You can also mix the types of interfaces that you use:
 
 ![Mixed types of interfaces](StructuralDiagrams/ClassDiagram/ClassDiagramScreenshotsForNotes///MixedTypesOfInterfaces.PNG)
 
-## 3. Objektdiagramm / Object diagram
+# 3. Objektdiagramm / Object diagram
 
 Class diagrams are used to build the blueprint for objects. We use object diagrams to represent those objects. We can use the dependency \<instantiate> between a class diagram and an object diagram to show where the object diagram came from. Object diagrams are used in different stages of the program to represent an objects state. If no object diagrams have been built based on a class diagram, then it's probably a good idea to delete the class diagram. Object diagrams also help verify the correctitude of class diagrams.
 
@@ -521,7 +521,7 @@ Object diagrams, just like class diagrams, can build connections with each other
 
 ![Object diagram with links](StructuralDiagrams/ObjectDiagram/ObjectDiagramLinks.PNG)
 
-## 4. Kompositionsstrukturdiagramm  / Composite structure diagram
+# 4. Kompositionsstrukturdiagramm  / Composite structure diagram
 
 ### 1. Part
 
@@ -683,7 +683,7 @@ You can have more collaborations in an collaboration application, you aren't res
 
 ![Collaboration application with more applications](StructuralDiagrams/CompositeStructureDiagram/Notes/CollaborationApplicationMoreApplications.PNG)
 
-## 5. Komponentendiagramm / Component Diagram
+# 5. Komponentendiagramm / Component Diagram
 
 ### Components
 
@@ -779,7 +779,7 @@ If you want to describe the manifest-connection in more detail you can use the f
 * ```<<custom code>>```. The artifact was custom written by a user.
 
 
-## 6. Verteilungsdiagramm / Deployment Diagram
+# 6. Verteilungsdiagramm / Deployment Diagram
 
 ### Applications of the diagram
 
@@ -854,3 +854,4 @@ A *communication path* describes an association between two notes. The associati
 Example:
 
 ![Communication Path](StructuralDiagrams/DeploymentDiagram/CommunicationPath.PNG)
+
