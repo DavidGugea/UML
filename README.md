@@ -874,6 +874,8 @@ You should structure your model horizontally and vertically in order to build a 
 
 ### Package
 
+#### Description
+
 ![](StructuralDiagrams/PackageDiagram/PackageDiagram.PNG)
 
 Package diagrams group elements together and namespaces that pack these elements together.
@@ -901,3 +903,46 @@ All the elements of a package are visible to one another. Just like in class dia
 * ```public (+)```
 * ```private (-)```
 * ```protected (#)```
+
+If you don't specify the visibility level of a package, it will automatically be ```public (+)```.
+
+Example:
+
+![](StructuralDiagrams/PackageDiagram/VisibilityLevel.PNG)
+
+#### Usage
+
+Through the usage of packages you can develop a system horizontally. 
+Packages are structuring classes and systems in logical and functional entities. They are building a model that is a great overview of the modular systems that work together.
+
+#### Implementation in C#
+
+
+![](StructuralDiagrams/PackageDiagram/PackageImplementation.PNG)
+
+```CSharp
+namespace DatabaseManagement{
+    public class Administrator{
+        private int _age;
+
+        public int Age{
+            get => _age;
+            set => _age = value;
+        }
+    }
+}
+namespace Database {
+    public class Relation {
+    }
+}
+```
+
+Even if the ```Database``` namespace is outside the ```DatabaseManagement```, inside the folder structure, it must be inside.
+
+### Package-Import
+
+![](StructuralDiagrams/PackageDiagram/PackageImportOverview.PNG)
+
+#### Description
+
+A package import is a relationship
