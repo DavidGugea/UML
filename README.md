@@ -945,4 +945,15 @@ Even if the ```Database``` namespace is outside the ```DatabaseManagement```, in
 
 #### Description
 
-A package import is a relationship
+A package import is a relationship that makes all the public elements of the package that is imported available inside the package that imports.
+
+This works just like an import in programming.
+
+The imported elements are imported without a qualified name. They are imported in such a way as if the package that imported the other package would already have them. If the imported package gets deleted from the model, the elements still stay inside the package that imported.
+In the diagram above, the ```RestaurantSystem``` can use the ```PdfBuilder``` without a qualified name, it can be used as if it would be already part of the ```RestaurantSystem``` package. However, all the other packages that want to use the ```PdfBuilder``` without importing the ```Tools``` package, they can only reference it using the qualified name : ```Tools::PdfBuilder```.
+
+The imported items are public inside the package that imported them. This is how they can be imported again.
+
+![](StructuralDiagrams/PackageDiagram/import_chain.PNG)
+
+In the diagram above
