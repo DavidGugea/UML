@@ -945,7 +945,7 @@ Even if the ```Database``` namespace is outside the ```DatabaseManagement```, in
 
 #### Description
 
-A package import is a relationship that makes all the public elements of the package that is imported available inside the package that imports.
+***A package import is a relationship that makes all the public elements of the package that is imported available inside the package that imports.***
 
 This works just like an import in programming.
 
@@ -956,4 +956,22 @@ The imported items are public inside the package that imported them. This is how
 
 ![](StructuralDiagrams/PackageDiagram/import_chain.PNG)
 
-In the diagram above
+In the diagram above diagram, inside the package diagram ```RestaurantChain``` you can use the ```PdfBuilder``` directly using its unqualified name. It is in ```Tools``` andd also in ```RestaurantSystem``` public.
+
+To prevent this, the UML provides ```Package-Access``` as a constraint on the package import.
+
+![](StructuralDiagrams/PackageDiagram/PackageAccess.PNG)
+
+***A package access is a relation that adds all public element names of a package to the importing package as private.***
+
+Despite the ```<<import>>```-relationship between ```RestaurantChain``` and ```RestaurantSystem```, this will not allow ```RestaurantChain``` to access the pdf creator by its unqualified name.
+
+#### Usage
+
+Use package imports when you need to use packages in other packages. Package import help you better define the system and the relationships between the packages.
+
+### Package-Merge
+
+![](StructuralDiagrams/PackageDiagram/merge_example_1.PNG)
+
+> ***A package merge defines a relationship between two packages where the non-private contents of the destination/target package are merged with the contents of the source package.***
