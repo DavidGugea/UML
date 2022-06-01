@@ -975,3 +975,8 @@ Use package imports when you need to use packages in other packages. Package imp
 ![](StructuralDiagrams/PackageDiagram/merge_example_1.PNG)
 
 > ***A package merge defines a relationship between two packages where the non-private contents of the destination/target package are merged with the contents of the source package.***
+
+In the example above the contents of the package ```GuestManagement``` are merged with the contest of the package ```VipGuestManagement```.
+
+In principle, a merge relationship represents an abbreviated notation for all the transformations required when merging the target package with the source package. The following example illustrates the principle operation of a package merge and shows the corresponding transformations.
+
