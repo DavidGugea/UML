@@ -980,3 +980,36 @@ In the example above the contents of the package ```GuestManagement``` are merge
 
 In principle, a merge relationship represents an abbreviated notation for all the transformations required when merging the target package with the source package. The following example illustrates the principle operation of a package merge and shows the corresponding transformations.
 
+![Package merging 1](StructuralDiagrams/PackageDiagram/package_merging_1.PNG)
+
+In the upper part of the figure, a packet merge of packet P2 into packet P1 is modeled. Packet P1 defines an element A, packet P2 defines an element B.
+
+The lower part of the figure shows the effects of the merge on package P1. The original existing element A remains intact as expected. Since element B did not previously exist in P1, a new element B is defined that specializes element B of package P2 (P2::B) and thus has all the attributes and operations of element P2::B according to the rules of generalization.
+
+But what happens if both packages already contain elements with the same names?
+
+In the upper part of the following figure, packages P1 and P2 both contain an element A. In a package merge, a generalization relation is added between the element from package P2 (P2::A) and the element from package P1 (A), as shown in the lower part of the figure.
+
+Thus, element A extends its own attributes and operations by those of element P2::A. Thus, a new element is created which, according to the rules of generalization, has all the attributes and operations of the elements P1::A and P2::A.
+
+![Package merging 2](StructuralDiagrams/PackageDiagram/package_merging_2.PNG)
+
+Let's consider another example where an empty package merges two other packages, both containing the same element.
+
+![Package merging 3](StructuralDiagrams/PackageDiagram/package_merging_3.PNG)
+
+In the figure above, the two packets P1 and P2, each defining an element A, are merged into an empty packet P3. The merge defines a new element A that inherits from P1::A and P2::A and thus combines all attributes and operations of both elements according to the rules of generalization.
+
+It is quite common that generalizations and associations are already defined in the individual packages. A merge relationship does not change the generalizations and associations.
+
+It only changes the elements that participate in them, which is illustrated by the example in the following figure.
+
+![Package merging 4](StructuralDiagrams/PackageDiagram/package_merging_4.PNG)
+
+## Usage
+
+Merge relationships are used when there are packages in the model whose contents and concepts complement each other and can therefore be combined to form a new whole.
+
+However, you should check the resulting inheritance hierarchy carefully so that the use of the merge relationship can also have undesirable effects.
+
+![Package merging 5](StructuralDiagrams/PackageDiagram/package_merging_5.PNG)
