@@ -15,7 +15,7 @@ This repository contains all the chapters of my UML book. Chapters in order:
 
 ## Part 2. Verhaltensdiagramme / Behavioral Diagrams
 
-8. Anwedungsfalldiagramm / Application Diagram
+8. Anwedungsfalldiagramm / Use Case Diagrams
 9. Aktivitätsdiagramm / Activity Diagram
 10. Zustandsdiagramm / State diagram
 
@@ -1013,3 +1013,179 @@ Merge relationships are used when there are packages in the model whose contents
 However, you should check the resulting inheritance hierarchy carefully so that the use of the merge relationship can also have undesirable effects.
 
 ![Package merging 5](StructuralDiagrams/PackageDiagram/package_merging_5.PNG)
+
+---
+
+# Part 2. Verhaltensdiagramme / Behavioral Diagrams
+
+---
+
+# 8. Anwedungsfalldiagramm / Use Case Diagrams
+
+## Applications
+
+Use case diagrams model the functionality of the system at a high level of abstraction from the so-called black box view of the user. Only those use cases are defined that an external user can perceive and whose execution brings him a recognizable benefit.
+
+The modeling describes what use cases the system offers and not how they are realized in the system. Thus, neither an order in which the use cases should be retrieved nor what actually happens during the use cases in the system is modeled. The foksu is placed on what a user can expect from the system.
+
+For example, it is interesting for a guest that he can order a dish in a restaurant. However, it is insignificant for him how his order is passed from the waiter to the cook and how many cooks are involved in the preparation.
+
+Use case diagrams are mainly used during analysis and definition in the early stages of a software project. They are used to capture and document user requirements. Based on the modeling results, requirements for the system are discussed with the users and/or customers and checked for completeness and correctness. For this reason, use case diagrams use only a few notation elements and should also be kept as simple as possible.
+
+Starting from the use case diagrams, which represent a rough view of the functionality of the system, the dynamic verification can be refined and specified in a top-down process by using further behavior diagrams.
+
+## Notation Elements
+
+### System Boundary
+
+#### Description
+
+***The system boundary includes a system that provides the required use cases and with which users interact.***
+
+All elements that are platted within the system boundaries represent components of the system. For example, if use cases are modeled within the system boundaries, the system must provide the specified functionality.
+
+![System Boundary](BehavioralDiagrams/UseCaseDiagrams/SystemBoundary.PNG)
+
+#### Usage
+
+Modeling a system boundary is not required by UML. However, it is recommended to delimit the software system from its actors and external systems.
+
+### Actor
+
+![Actor](BehavioralDiagrams/UseCaseDiagrams/Actor.PNG)
+
+#### Description
+
+***An actor models a type or role that an external user or system assumes while interacting with a system.***
+
+The figure shows an example of a human actor ```Guest``` as well as a system ```Credit Card Company```. The UML does not forbid to use the rectangle notation also for humans or the stickman notation for further systems.
+
+Actors are always modeled outside the system boundaries. This can be seen in the following figure.
+
+An actor does not necessarily have to represent a single physical insatnce. Different users or external systems can act in changing roles towards the system depending on their current function. For example, the same person who in the above illustration today acts as a waiter may tomorrow be a guest in the restaurant.
+
+#### Usage
+
+Model actors to model users of a system or further external systems involved in interactions with the system.
+
+Keep in mind that actors do not define physical entities of people or systems, but roles with respect to the modeled system.
+
+### Use Case
+
+![Use Case](BehavioralDiagrams/UseCaseDiagrams/UseCase.PNG)
+
+#### Description
+
+***A use case specifies a self-contained set of actions provided by a system that yields a recognizable user for one or more actors.***
+
+Application cases define that a functionality is provided without specifying how this is to be done.
+
+For example, the use case in the figure above defines that a dish can be ordered without expressing what individual actions are involved or in what order and by whom the actions must be performed (e.g., call waiter, communicate order, forward order to cook, etc.). )
+
+As shown in the next figure, UML allows use cases to be written in three ways. Semantically, there is no difference between the three notation types shown.
+
+![Three different notations](BehavioralDiagrams/UseCaseDiagrams/ThreeDifferentNotationsForUseCases.PNG)
+
+The positioning of use cases within system boundaries defines which use cases are provided by which systems. The following figure models that the use case ```Order Food``` is provided by the system ```Restaurant```:
+
+![Use case inside system boundary](BehavioralDiagrams/UseCaseDiagrams/UseCaseInsideSystemBoundary.PNG)
+
+#### Usage
+
+Use cases are mostly used to model an initial rough view of the functional requirements for a system. Therefore, combine actions that lead to a single result visible to the actor into a single use case as well.
+
+Keep in mind that use cases are intended to facilitate communication between users/clients and the software engineer, so refrain from dividing use cases too finely.
+
+For this purpose, it is often helpful to imagine the perceivable functionality of the system from the user's point of view or, if possible, to have him explain a view himself so as not to get caught up in modeling technical details or processes.
+
+### Association
+
+![Association](BehavioralDiagrams/UseCaseDiagrams/Association.PNG)
+
+#### Description
+
+***An association models a relationship between actors and use cases in use case diagrams.***
+
+These are the binary associations already known from class diagrams. As expected, they can also be provided with multiplicities or navigation directions. N-ary associations are not used in use case diagrams.
+
+The use case diagram from the figure above models a guest who can order one to any number of dishes from a waiter in a restaurant. However, a dish is ordered by only one guest at a time from a waiter.
+
+Modeling associations between a use case and multiple acetuers requires that all actors with an association to the particular use case are needed to execute the use case. The figure above specifies that both a guest and a waiter are required to execute the Order Dish use case.
+
+A directed association specifies the allowed communication direction between the use case and the actor. In the figure above, for example, it defines that a waiter must be involved in the use case, but he cannot initiate the use case himself. Communication can only be unidirectional from the use case to the waiter.
+
+Between the guest and the court order, the navigation and thus communication direction remains unspecified, which allows bidirectional communication between them. A guest can thus both call the use case and receive information from it.
+
+#### Usage
+
+Use associations to model which use cases may be executed by which actors.
+
+### Generalization/Specialization
+
+#### Description
+
+***A generalization can be modeled in use case diagrams between actors or use cases and defines a relationship between a specific and a general element.***
+
+![Generalization - Specialization](BehavioralDiagrams/UseCaseDiagrams/Generalization_Specialization.PNG)
+
+The figure above shows a use case diagram, which is a generalization already known from class diagrams.
+
+A guest has an association to the use case Pay the bill. The VipGuest that specializes it inherits all of its capabilities and is thus allowed to use the use case as well, even if no direct association between VipGuest and Pay the bill is modeled.
+
+Additionally, a VipGuest may request a personal waiter, which is not allowed for the simple Guest.
+
+The Pay the bill use case is specialized by the Pay with the credit card use case. The set of actions defined in Pay the bill is thus inherited and refined by the Pay with the credit card use case.
+
+The association of Pay the bill to Guest is also inherited. A Guest and a VipGuest can thus also pay with credit card, even if no separate associations have been modeled between them and the specializing use case.
+
+#### Usage
+
+Generalizations and specializations allow to hierarchically order and reuse use cases with similar functionalities.
+
+In the context of actors, generalizations/specializations are mostly used to model different rights and to highlight their relationship (example: user and administrator).
+
+### Include-Relationship
+
+![Include Relationship](BehavioralDiagrams/UseCaseDiagrams/IncludeRelationship.PNG)
+
+#### Description
+
+***An include relationship models the unconditional inclusion of the functionality of one use case in another use case.***
+
+Each time the embedding use case is executed, the embedded use case must also be called. The including use case depends on the execution result of the including use case and is therefore not complete without it. Overall, the include relationship can also be compared to calling a sub-function.
+
+A use case can be included by any number of use cases and can also include use cases itself (however, be careful not to let cycles occur).
+
+The include relationship from the figure above models that the Pay with the credit card use case includes the functionality of the Check credit card use case. Each time a payment is made with the credit card, the credit card must be checked. The functionality of the Pay with credit card use case depends on the result of the credit card check and cannot be performed without it.
+
+#### Usage
+
+The include relationship is mostly used when reusing use cases. Often there are use cases in the model with the same sub-functionality that can be separated out as a stand-alone use case and maintained centrally.
+
+It clarifies the relationships between the use cases and increases the expressiveness of the diagram.
+
+As was mentioned earlier, the include relationship can be viewed as a type of subfunction call, where the unte function is a complete use case. When modeling, keep in mind that use cases represent the functionality of a system in an overview fashion, and do not succumb to the temptation to model actual unte function calls in terms of program flow.
+
+### Extend-Relationship
+
+![Extend Relationship](BehavioralDiagrams/UseCaseDiagrams/ExtendRelationship.PNG)
+
+#### Description
+
+***An Extend relationship models the conditional inclusion of the functionality of one use case into another use case.***
+
+The functionality of the extending use case can be included in the functionality of the extended use case at the extension point. Unlike an include relationship, the extending use case is independent of the extending use case and can be executed without it.
+
+A use case can extend any number of other use cases and can itself be extended by other use cases. (Again, be careful not to create cycles).
+
+The list of possible extension points is noted below a hyphen with the heading >extension points<. An optional annotation at the extend relation specifies the extension point at which the extending use case can be inserted, and the condition when this happens. The functionality of the extending use case is invoked if this condition evaluates to true during the execution of the extended use case or if no condition is specified. ( In this case it is actually a <<include>> relationship, since the functionality of the extending use case is always called).
+
+In the example of the figure above, the use case >Call the police< extends the use case >Pay the bill<, expressing that in the course of payment the police can be called. A bill can just as well be paid without calling the police.
+
+The extension point is defined in the use case >Pay the bill< with >Amount Acceptance<. The associated annotation indicates that the extension will be performed and thus the police will be called if the amount received is keliner than the actual price.
+
+#### Usage
+
+The Extend relationship allows to reuse use cases with partial functionality and to highlight the dependencies between them. Unlike the include relationship, the functionality of the extending use case does not have to be included.
+
+Although the Extend relationship allows a kind of >>If-Then-Else modeling<<, it is not recommended to model program flows at this point. It is recommended to get an overview of the required functionalities of the sytem by using use case diagrams before modeling the details with further behavior diagrams.
