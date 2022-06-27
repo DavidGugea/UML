@@ -1189,3 +1189,31 @@ The extension point is defined in the use case >Pay the bill< with >Amount Accep
 The Extend relationship allows to reuse use cases with partial functionality and to highlight the dependencies between them. Unlike the include relationship, the functionality of the extending use case does not have to be included.
 
 Although the Extend relationship allows a kind of >>If-Then-Else modeling<<, it is not recommended to model program flows at this point. It is recommended to get an overview of the required functionalities of the sytem by using use case diagrams before modeling the details with further behavior diagrams.
+
+# 9. Aktivitätsdiagramm / Activity Diagram
+
+## Use Cases
+
+Activity diagrams offer many possibilities to model the behavior of systems. They provide numerous notational elements that can be used to model the following examples:
+
+* alternative sequences,
+* sequences of activities,
+* parallel activities,
+* interleaved activities,
+* areas of responsibility or
+* exceptions and their handling
+
+Activity diagrams can be used in all phases of software development:
+
+* During the **analysis/definition phase**, activity diagrams are used to model and analyze business processes. They show the sequence of processes and activities as well as possible alternative sequences.  
+The visual representation of the business processes facilitates their analysis and optimization. The resulting optimizations are documented directly in activity diagrams and can be used as guidelines for implementation.
+The activity diagrams created in this phase describe the processes from the perspective of the users and/or the clients. They use only a few notation elements and are deliberately kept simple in order to serve as a basis for communication between the software architect and the users/clients.
+* In the **draft/design phase**, activity diagrams offer a wide range of options for modeling internal system processes. In this phase, activity diagrams also acquire their main significance. For example, extensive processes in a system (or between different systems) or even implementation rules of complex algorithms can be specified.
+Activity diagrams from this phase are developed as working templates for programmers. The variety and power of the notation elements can therefore be fully exploited to describe the internal behavior of the software as precisely as possible.
+* The specified processes are used as a realization template during the **implementation**-phase.
+* In the **test phase**, the exact flow specifications can be reused as a basis for definitions of test cases.
+
+## Notation elements
+
+Before the individual notation elements of activity diagrams are presented, the class diagram from the following figure should give you a first overview and simplify the classification of the notation elements.
+
