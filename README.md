@@ -1256,8 +1256,6 @@ Use actions to model functionalities that should not be further decomposed. It i
 
 Thus it can happen that an action *Serve dish* is modeled from the view of a guest as a single activity and thus represents an action. However, from a waiter's point of view, it is several individual activities that would be modeled by several actions (e.g., fetch dish, compare with order, deliver dish).
 
-Translated with www.DeepL.com/Translator (free version)
-
 ### Control Flow
 
 ![Control Flow](BehavioralDiagrams/ActivityDiagram/ControlFlowNotationElement.PNG)
