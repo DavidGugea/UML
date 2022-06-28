@@ -1217,3 +1217,48 @@ Activity diagrams from this phase are developed as working templates for program
 
 Before the individual notation elements of activity diagrams are presented, the class diagram from the following figure should give you a first overview and simplify the classification of the notation elements.
 
+![Types of Nodes](BehavioralDiagrams/ActivityDiagram/TypeOfNodesInActivityDiagrams.PNG)
+
+The UML calls the types of nodes used in activity diagrams **Activity Nodes** and divides them into three groups:
+
+* **Executable Nodes**
+    * All nodes that can perform activities, e.g. an action, are placed in this group.
+* **Object Nodes**
+    * Object nodes are all notation elements that can store data in activity diagrams, e.g. a datastore
+* **Control Nodes**
+    * Control nodes, e.g. start and end nodes or decision and connection nodes, coordinate the flow between other nodes and significantly determine the flow of activity diagrams.
+
+Another essential component of activity diagrams are the **Activity Edges**, which include, for example, the control flow or the object flow. They model directed connections between the activity accounts and thus determine the sequence of the flow of an activity diagram.
+
+### Action
+
+![Action Notation Element](BehavioralDiagrams/ActivityDiagram/ActionNotationElement.PNG)
+
+#### Description
+
+An **Action** represents the fundamental **unit of executable functionality** that is not further decomposed in the model and is thus **atomic**.
+
+The action is an executable node and represents the fundamental unit of a behavior specification. Most other notation elements of activity diagrams are used to sequence, group, structure actions, provide them with input and output parameters, etc.
+
+Actions can model very simple and short functionalities, such as the addition of two numbers, but also extensive activities that are not atomic in themselves, but are considered atomic in the model and should not be further divided.
+
+The figure above illustrates an action *Serve dish*, which is thus considered as a single activity. A more detailed and refining modeling of this activity is not considered necessary.
+
+Actions can have ***Local Preconditions*** and ***Local Postconditions***, which must be fulfilled before and after the execution of *an* action. 
+
+![Local Pre and Post Condition](BehavioralDiagrams/ActivityDiagram/localPreAndPostCondition.PNG)
+
+The figure above shows an example of the default notation type of pre and post operations of an action using annotations.
+
+#### Usage
+
+Use actions to model functionalities that should not be further decomposed. It is not mandatory that the action itself is no longer decomposable. From the point of view of the model, the individual steps of an action are not important.
+
+Thus it can happen that an action *Serve dish* is modeled from the view of a guest as a single activity and thus represents an action. However, from a waiter's point of view, it is several individual activities that would be modeled by several actions (e.g., fetch dish, compare with order, deliver dish).
+
+Translated with www.DeepL.com/Translator (free version)
+
+### Control Flow
+
+![Control Flow](BehavioralDiagrams/ActivityDiagram/ControlFlowNotationElement.PNG)
+
