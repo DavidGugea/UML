@@ -1260,3 +1260,18 @@ Thus it can happen that an action *Serve dish* is modeled from the view of a gue
 
 ![Control Flow](BehavioralDiagrams/ActivityDiagram/ControlFlowNotationElement.PNG)
 
+The **Control Flow** is a **directed connection between activity nodes** and represents their **execution order.**
+
+The figure above shows a control flow between two actions. It specifies that after the action *Take order* the action *Prepare dish* is executed.
+
+If the control flow would make the diagram confusing, for example because several control flows intersect, the UML allows them to be separated by **connectors** :
+
+![Connectors](BehavioralDiagrams/ActivityDiagram/Connectors.PNG)
+
+The 2 figures above are semantically the same. Each connector must have a unique name and exactly one outgoing or incoming control flow.
+
+#### Usage
+
+Use control flows to define the order in which activity nodes should be executed.
+
+### Activity Partitions
