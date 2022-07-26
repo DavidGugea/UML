@@ -1275,3 +1275,46 @@ The 2 figures above are semantically the same. Each connector must have a unique
 Use control flows to define the order in which activity nodes should be executed.
 
 ### Activity Partitions
+
+![Activity Partitions](BehavioralDiagrams/ActivityDiagram/ActivityPartitions.PNG/)
+
+#### Description
+
+***Activity Partitions group activity nodes into organizational units.***
+
+In the figure above, the actions shown are assigned to the Guest and Waiter activity partitions, defining the responsibility for executing each action. Activity partitions are therefore also often referred to as responsibility partitions.
+
+Activity areas can themselves contain further activity areas (see the following figure).
+
+The following figure models a restaurant activity area that includes the guest and waiter activity areas. A guest or a waiter are thus only responsible for the modeled actions within a restaurant.
+
+Activity areas may be modeled both vertically and horizontally and may even intersect.
+
+![Hierarchical Activity Partitions](BehavioralDiagrams/ActivityDiagram/HierarchialActivityPartitions.PNG)
+
+According to the activity diagram from the following figure, a guest orders a dish in a dining room. After a waiter takes the order, a cook prepares the dish in a kitchen. Then a waiter serves the dish, which is done both in the kitchen (picking up the dish) and in the dining room (delivering it). Finally, a guest can eat his dish in the dining room.
+
+It is easy to see from the diagram that a cook does not have to take any actions in the dining room and a guest has nothing to do in the kitchen. A waiter, on the other hand, is active in both the dining room and the kitchen.
+
+![Overlap of Activity Partitions](BehavioralDiagrams/ActivityDiagram/OverlapOfActivityPartitions.PNG)
+
+If an activity area is needed that has little to do with the core of the model, it can be marked with the stereotype ```<<external>>```.
+
+![External Activity Partitions](BehavioralDiagrams/ActivityDiagram/ExternalActivityPartition.PNG)
+
+#### Usage
+
+Activity areas are used to uniquely assign tasks to be performed to actuators.
+
+Actuators represent classes that have already been modeled in one of your class diagrams at an earlier stage of the development process. Activity areas can be used to check the operations of these actor classes for completeness and correctness.
+
+If an actor needs to perform an action in its activity area that is not covered by any of its operations, its class definition must be extended.
+
+Conversely, if there are actions in the actor classes that are not called up in any of the activity diagrams, it should be checked whether they are actually required.
+
+### Object Nodes and Object Flow
+
+![Object Nodes Object Flow](BehavioralDiagrams/ActivityDiagram/ObjectNodesObjectFlow.PNG)
+
+#### Descripition
+
