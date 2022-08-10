@@ -1318,3 +1318,70 @@ Conversely, if there are actions in the actor classes that are not called up in 
 
 #### Descripition
 
+***Object nodes model the passing of objects between actions and can be viewed as a kind of storage for objects of the specified classes. The object flow represents the transport of objects.***
+
+The appropriate function of the objects of the class Dish as output parameters of >Create dish< and as input parameters of >Serve dish< becomes even clearer by the use of the **pin notation**.
+
+![Pin Notation Object Flow](BehavioralDiagrams/ActivityDiagram/PinNotationObjectFlow.PNG)
+
+The UML allows the pin to be notated above the object flow to emphasize the transport of the object.
+
+![Pin Notation Object Transport](BehavioralDiagrams/ActivityDiagram/PinNotationObjectTransport.PNG)
+
+Objects can change their state during their editing in actions. The object node can therefore be instructed to save only objects in a certain state.
+
+![Object Node With State](BehavioralDiagrams/ActivityDiagram/ObjectNodeWithState.PNG)
+
+The above figure specifies that a from *Prepare dish* is in the *ready-to-serve* state and also in this state achieves the *Serve dish* action.
+
+It is also possible to specify states when using pin notation. **States must be the same on both sides of the control flow:**
+
+![Pin Notation State](BehavioralDiagrams/ActivityDiagram/PinNotationState.PNG)
+
+There are actions (e.g. in a signal processing), which already accept new objects as parameters, although they have not yet finished the processing of the already passed objects. The action is thus able to receive obejcts in a *stream*:
+
+![Object Stream](BehavioralDiagrams/ActivityDiagram/ObjectStream.PNG)
+
+To specify a stream in pin notation, the pins are colored gray.
+
+![Object Stream Pin Notation](BehavioralDiagrams/ActivityDiagram/ObjectStreamPinNotation.PNG)
+
+Several object nodes (pins) can be combined to so-called *parameter sets*:
+
+![Parameter Sets](BehavioralDiagrams/ActivityDiagram/ParameterSets.PNG)
+
+Both input and output pins can be grouped into parameter sets. Parameter sets can be modeled separately or overlap as shown in the figure above. The grouping of pins to parameter sets is similar to the modeling of an AND connection of the individual pins within a parameter set. There is an XOR connection between different parameter sets.
+
+This becomes clearer in the figure above: For example, the action *prepare toast* can only be executed if **either** *ham, cheese* and *toast bread* or *toast bread, egg* and *tomato* are available. Simultaneous passing of all parameters is allowed, but due to the XOR relationship between the parameter sets, only the objects of one parameter set are accepted and processed at the same time.
+
+Additional pins that are not assigned to a parameter set must be marked as *stream*.
+
+The possibly so far little comprehensible distinction between object and object node as memory for objects becomes clear, if one considers that object nodes can contain quite several objects.
+
+![Object Nodes Args](BehavioralDiagrams/ActivityDiagram/ObjectNodesArgs.PNG)
+
+The figure above models an object node *dish* that can hold a maximum of six objects of class *dish* in *ready-to-serve* state due to the **upper-bound** specification. If the maximum number of allowed objects in the object node is reached, no more can be stored.
+
+If the specification of the upper limit is missing, this does not mean according to UML that only exactly one object can be accommodated. The maximum number of possible objects is merely not specified and can also be any number. In practice, however, an object node is usually modeled for exactly one object and thus the direct transfer of an object between two actions is expressed.
+
+The minimum number of objects that may be passed on simultaneously via an object flow can also be defined.
+
+![Object Stream args](BehavioralDiagrams/ActivityDiagram/ObjectFlowMinimalObjectNumbers.PNG)
+
+The **weight** specification from the figure above specifies that there must always be at least 2 objects of the *dish* class in the *ready-to-serve* state in the object node before the *serve dish* action can be performed. If the specification of the number is omitted, the value 1 is assumed.
+
+The order in which the objects are provided by the object node can also be specified.
+
+![Order Specification](BehavioralDiagrams/ActivityDiagram/OrderSpecification.PNG)
+
+The UML defines four values for *ordering*:
+
+* **unordered:** The obejct node provides the objects of the taking action in unordered, random order.
+* **ordered:** The objects are provided in an ordered sequence.
+* **LIFO:** **LIFO** stands for last in first out and means that the object that arrived last in the object node is passed on first.
+* **FIFO:** **FIFO** is the opposite of LIFO and stands for ifsrt in first out. An object node marked with it passes on the objects in the order they were handed to it (the first object first). This is also the default value if none of the three other order specifications are used.
+
+Further defaults for sequences with which the objects are to be provided by the object node can be modeled with selection specifications:
+
+![Selection Specification](BehavioralDiagrams/ActivityDiagram/SelectionSpecification.PNG)
+
