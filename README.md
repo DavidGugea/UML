@@ -1385,3 +1385,332 @@ Further defaults for sequences with which the objects are to be provided by the 
 
 ![Selection Specification](BehavioralDiagrams/ActivityDiagram/SelectionSpecification.PNG)
 
+A selection specification is noted with the help of an annotation marked by the stereotype ```<selection>>```. 
+
+For example, the activity diagram in the figure above models that the ```dish```-es should be provided in the order in which they are requested by the ```watier```.
+
+an object node may well be filled and emptied by several actions. In that case it is considered a **central buffer** between the actions and is marked with the stereotype ```<centralBuffer>>```:
+
+![Central Buffer](BehavioralDiagrams/ActivityDiagram/centralBuffer.PNG)
+
+In the figure above, the Inventory object node acts as a zcentral buffer between multiple actions. It is filled by the actions on the left and emptied by the actions on the right.
+
+If the object account should not be emptied, but should persistently store the objects stored in it, it must be marked as ```<<datastore>>```.
+
+![datastore](BehavioralDiagrams/ActivityDiagram/datastore.PNG)
+
+The object node **Bill** is filled by the already known actions in the figure above (but this time with **Bills**). The action **check bill** takes **Bill** objects from it. In contrast to an object node of the stereotype ```<<centralBuffer>>```, not the stored objects themselves, but always only their copies are issued. The stored **Bills** are thus not lost after their check.
+
+A special kind of object nodes are the exception object nodes. If an unexpected exception occurs during the processing of an action, the action is aborted and an exception object is sent to another action, which is called exception handler.
+
+![Exception Object](BehavioralDiagrams/ActivityDiagram/ExceptionObject.PNG)
+
+If the action *prepare dish* from the figure above can be executed as predicted, a *dish* object is sent to the object node and the action *serve dish* is executed.
+
+However, if the unexpected exception *dump dish* occurs, the execution of *prepare dish* is aborted and the exception handler *dump dish* is called.
+
+#### Usage
+
+Object nodes and object flows are used to model the data exchange between individual actions and thus the data flow in an activity diagram.
+
+## Signal transmission and reception
+
+![Signals](BehavioralDiagrams/ActivityDiagram/signal_transmission_reception.PNG)
+
+### Description
+
+> A **Send Signal Action** is a special type of action that asynchronously sends a **signal to a target object.
+> An **Accept Event Action** is a special kind of action that waits for the **receipt of a signal**.
+
+In the figure above, for example, a *Guest* sends the signal *Waiter !* to the *Waiter* waiting for it.
+
+After sending the signal, the sender immediately continues with its work and does not wait for a response from the receiver.
+
+For example, if the *guest* has called the *waiter*, he starts reading the newspaper immediately and does not wait until the waiter gets up to take the order.
+
+The **waiter*, for its part, remains in action (more precisely: in signal reception) *Waiter!* after the start until the expected signal arrives at it. Only then it executes the action *Take order*.
+
+If the signal reception has incoming contrll flows, it will be activated for receiving signals as soon as it is reached by the sequence. Otherwise, it is activated immediately after the start of the sequence (no matter where it starts) and waits for the arrival of signals.
+
+Signals can arrive at a receiver at any time and must also be able to be received at any time. However, a receiver does not have to process a signal as soon as it arrives. (It is e.g. conceivable that during the presentation of a signal already another one arrives).
+
+Signals do not necessarily have to be sent by an action, but can also be triggered in time.
+
+![Temporal Event](BehavioralDiagrams/ActivityDiagram/temporal_event.PNG)
+
+The signal reception of a time triggered signal is noted with the help of an hourglass symbol. According to the activity diagram, the modeled *child* will go to sleep *every day* at 10 p.m. at the latest. The time specification can define both time points (*22 o'clock*) and time periods (*after 20 min*).
+
+### Usage
+
+Signal send and signal receive are used in activity diagrams at points where an asynchronous message exchange is to be modeled.
+
+Although a signal can be sent out by several different actions, only exactly one action may receive this signal. Otherwise it cannot be predicted at which point of the activity diagram the process will be continued.
+
+## Activity
+
+![Activity](BehavioralDiagrams/ActivityDiagram/Activity.PNG)
+
+### Description
+
+> An *activity* comprises an ordered **sequence of activity nodes**.
+
+The figure above shows a *process payment* activity that includes two actions and one object node. As an activity, it can be consistently reused in further activity diagrams.
+
+The following figure models the invocation of an activity by means of an action (recognizable by the annotated fork symbol).
+
+![Activity Call](BehavioralDiagrams/ActivityDiagram/ActivityCall.PNG)
+
+Activities can be provided with **Preconditions and Postconditions**, which must be fulfilled before or after the execution of an activity. Unlike the local preconditions and postconditions of actions, they are noted within activities and must be fulfilled for the entire activity:
+
+![Pre-post conditions](BehavioralDiagrams/ActivityDiagram/ActivityWithPreAndPostconditions.PNG)
+
+The UML further allows activities to be provided with **Input Parameters/Output Parameters**.
+
+![Activity Parameter](BehavioralDiagrams/ActivityDiagram/ActivityParameter.PNG)
+
+The activity *process payment* is extended by an input parameter *TableNr* and an output parameter *Amount of money* in the figure above. Their notation on the edges of the activity makes it clear that they are visible outside the activity and flow into and out of the activity, thus binding the activity's interface.
+
+They represent a type of object flow and can also be notated using pins. Likewise, UML allows them to be modeled as stream or exception nodes or to define the accepted state.
+
+The type definitions of the parameters are noted below the activity name in the way already known from attributes.
+
+### Usage
+
+Activities are used to group activity nodes into higher-level units and to structure them hierarchically. They open up the possibility of representing the modeled functionality with different levels of detail at different levels. This allows zooming from a high abstraction level down to individual details of the functionality.
+
+Each complete activity diagram forms a completed activity, which enables consistent reuse of processes once specified.
+
+## Start and end nodes
+
+![Start and end node](BehavioralDiagrams/ActivityDiagram/StartAndEndNode.PNG)
+
+If several processes are to start simultaneously within an activity, several start nodes can also be modeled.
+
+The next figure shows an activity that contains two start nodes. If a *dish is eaten*, the fork and the knife are to be used simultaneously and in parallel.
+
+![Eating the dish](BehavioralDiagrams/ActivityDiagram/eatingthedish.PNG)
+
+The UML defines two different **end nodes**.
+
+![End nodes](BehavioralDiagrams/ActivityDiagram/EndNodes.PNG)
+
+The **Flow Final Node terminates only the control flow** running into it. It has no effect on the other control flows of the activity.
+
+The **Activity Final Node terminates all control flows** of the activity and thus the activity itself.
+
+In the figure above, the right flow is terminated as soon as the *use knife* action ends. The used flow end node expresses that the left flow is not affected. So a *dish* can still only be eaten with a *fork*. On the other hand, by modeling the end of activity in the left flow, the entire activity and thus also the action *use knife* is terminated as soon as the action *use fork* is completed.
+
+Unlike the *exceptions*, the end nodes do not abruptly terminate the activity, but end it as planned and return any output objects of the activity.
+
+An activity may well have multiple end nodes. The first activity end reached by the flow terminates all further flows and thus the activity.
+
+### Usage
+
+Start and end nodes are used to uniquely define the start and end of the flow of an activity.
+
+## Decision and merge nodes
+
+![Decision and merge nodes](BehavioralDiagrams/ActivityDiagram/DecisionAndMergeNodes.PNG)
+
+### Description
+
+A **Decision Node** represents a **branch of the control flow** at which exactly one of the possible control flows is selected.
+
+A decision node has one incoming and any number of outgoing control flows, exactly one of which is continued during execution. The **guards** are noted in square brackets at the outgoing control flows and determine the further control flow. The guards must be disjoint (mutually exclusive) and cover all choices. Otherwise, the further control flow cannot be determined unambiguously. The order in which the guards are evaluated is not fixed.
+
+In the figure above, the decision node is used to select whether *salt should be added* to the soup. If the condition does not apply (*else*), the *soup is finished*.
+
+The decision basis can be noted at the decision node in the form of an annotation:
+
+![Basis for decision](BehavioralDiagrams/ActivityDiagram/BasisForDecision.PNG)
+
+The question *Is the soup good?* serves as **Decision Input** in the figure above. If it is true, the cook is praised, otherwise he is blamed.
+
+As the opposite of the decision node, UML defines a connection node.
+
+A **Merge node** combines several alternative control flows.
+
+Only one of the arbitrarily many escaping control flows is continued in exactly one outgoing control flow.
+
+The UML explains the combination of decision and merge accounts into one notation element to allow multiple incoming and outgoing control flows at a single node.
+
+In the activity diagram in the following figure, after the first decision node and the respective actions *Condemn* or *Praise*, the control flow is rejoined by a connection node. At the same time, a decision node branches the control flow to the action *Chide waiter* or *Praise waiter*. The two nodes are combined into one diagram element.
+
+![Decision and merge node](BehavioralDiagrams/ActivityDiagram/DecisionAndMergeNode.PNG)
+
+Decision and connection nodes also allow modeling loops in activity diagrams.
+
+![Loop Test](BehavioralDiagrams/ActivityDiagram/LoopTest.PNG)
+
+If salt is missing after the first tasting of the soup, it is added. The control will then return to the *try soup* action and decide again whether *salt is missing*. This process is repeated until no salt is missing from the soup.
+
+### Usage
+
+Use decision and connection nodes to model simple alternative flows and loops in an activity diagram. For modeling complex loops and alternatives, UML provides special nodes.
+
+Note that the specified monitoring conditions on the expressed control flows of a decision node must be disjoint, i.e., mutually exclusive. If, for example, monitoring conditions such as *number < 10* and *number > 7* are noted at two control flows, the further control flow cannot be uniquely determined at *number=8* because both apply.
+
+The selected monitoring conditions must still cover all possible choices. If, for example, the monitoring conditions *number < 0* and *number > 0* apply, then none of the two applies if *number=0*, which has the consequence that the control flow stops.
+
+If it is not possible or necessary to consider each alternative of the control flow separately, add a monitoring condition that includes all monitoring conditions not already defined.
+
+It is allowed in UML to model several control flows starting from one action or activity, to add monitoring conditions to them and thus to omit decision nodes. Likewise, multiple control flows can enter an action or activity, bypassing the use of connection nodes. While this option is often used in practice for connection nodes, it is very rare to avoid modeling decision nodes because they clearly highlight the possible branching of the control flow and its alternatives and make the diagram clearer.
+
+## Fork Nodes and Join Nodes
+
+![Fork and join nodes](BehavioralDiagrams/ActivityDiagram/ForkAndJoinNodes.PNG)
+
+> A **fork node** splits a control flow into several parallel control flows.
+> A **join node** combines multiple control flows into a single control flow.
+
+In contrast to a decision node where exactly one of the possible outgoing control flows is selected, the use of a fork creates two parallel flows that are processed independently of each other.
+
+The figure above contains such parallel control flows. For example, the drizzling of lemon juice must be performed in parallel with the mixing. The respective heating of butter and the egg yolk is also carried out in parallel by modeling two start nodes.
+
+The union is the counterpart of the bifurcation. It synchronizes several control flows into a single flow (combines them) by releasing the control flow leaving it only after *all* control flows entering it have actually arrived at it (AND operation). It waits so to speak for all parallel flows, which it is to synchronize.
+
+If another join is to be used to join control flows, this can be specified by a ***Join Spec***.
+
+![Join Spec](BehavioralDiagrams/ActivityDiagram/JoinSpec.PNG)
+
+The union specification in the figure above defines that the control flow can continue after the union as soon as one of the two control flows A or B reaches the node.
+
+Thus, during the activity Eat, a dish is eaten and hunger is satisfied at the same time. As soon as one of the two actions is finished, the activity Eat is also finished.
+
+Like the decision and connection nodes, bifurcation and union can be combined into one diagram element.
+
+![Fork and join again](BehavioralDiagrams/ActivityDiagram/ForkAndJoinAgain.PNG)
+
+### Usage
+
+Use fork to split a sequential control flow into several parallel control flows and union to synchronize parallel control flows.
+
+## Loop Node
+
+### Description
+
+> A ***Loop Node*** is a composite activity representing an initialization (for section), a test(while section) and a loop body (do section).
+
+The *initialization* is executed exactly once when the loop account is first entered. The *test* and *loop body* areas are called iteratively.
+
+The test area decides if and how often the loop body is executed and must return a boolean value symbolized by an annotated pin and a decision node.
+
+![Loop Node](BehavioralDiagrams/ActivityDiagram/LoopNode.PNG)
+
+In the loop body, which is called until the test area returns false, the actions and activities to be performed at each iteration are modeled.
+
+The figure above contains a loop node that models the consumption of a soup. In the initalization area, the soup plate is first filled. As long as the plate is not empty, the action Loeffeln soup is called.
+
+The test area can be modeled both before and after the loop body.
+
+In the left loop node of the next figure, the test is evaluated before the loop body so that it is not entered once if necessary. In the right loop node, the loop body Suppe loefeln is executed at least once.
+
+Only then is the test performed to determine whether another loop pass is required.
+
+Like other activities, loop nodes can also receive and return objects.
+
+![Do While Swap](BehavioralDiagrams/ActivityDiagram/do_while_swap.PNG)
+
+![Input-Ouput-Parameters](BehavioralDiagrams/ActivityDiagram/input_output_params.PNG/)
+
+### Usage
+
+Loops can also be modeled somewhat awkwardly in activity diagrams using decision and connection nodes, so that they are often difficult to recognize.
+
+Loop nodes remedy exactly this situation by representing a loop compactly and clearly in a notation element.
+
+## Conditional Node
+
+### Description
+
+A condition node is a composite activity that represents an exclusive choice between one or more alternatives.
+
+A condition node consists of at least one test and one body. Its execution starts in the test area, where one or more actions are used to decide whether the body should be executed. The action must therefore return a value of type *boolean*, which is indicated by the pin and decision node used.
+
+For example, the activity diagram from the following figure models that a complaint to the waiter only occurs if the dish is oversalted.
+
+Multiple conditional executions can be modeled in a single conditional node.
+
+![Conditional Node](BehavioralDiagrams/ActivityDiagram/ConditionalNode.PNG)
+
+If the dish is oversalted, a complaint is made to the waiter; if it is too spicy, a complaint is also made to the waiter ( in the following figure ).
+
+![More ifs](BehavioralDiagrams/ActivityDiagram/moreifs.PNG)
+
+The order of evaluation of the if-ranges is not fixed and can even be done in parallel. If the dish is oversalted and too spicy, the complaints to the waiter can thus be made in any order.
+
+If-ranges followed by the same then-range as in the figure above can be cascaded into condition nodes.
+
+If the dish is oversalted or too spicy, a complaint is made to the waiter.
+
+If an action is to be executed only if none of the previously defined if conditions are met, it can be modeled in the else area.
+
+The if- and else-areas can also be modeled and nested as often as desired.
+
+![Ififthenelse](BehavioralDiagrams/ActivityDiagram/ififthenelse.PNG)
+
+![more ifs](BehavioralDiagrams/ActivityDiagram/ififthenelseifthenelse.PNG)
+
+The use of elseif ranges additionally specifies the order in which the checking of if conditions should be performed. The condition dish too hot? will only be checked if (and thus after) the conditions dish oversalted and dish too hot do not apply.
+
+### Usage
+
+Alternative processes can also be modeled with decision and connection nodes. For a small number of alternatives on a decision level or for a high nesting depth, the modeling option is quite suitable and should be spoiled for the condition node.
+
+However, if there are many decision alternatives on a decision level, a condition node should be used because it provides a more compact representation in this case.
+
+## Interruptible Activity Region
+
+### Description
+
+An **Interruptible Activity Region** includes a group of activity nodes whose execution can be aborted.
+
+The interruptible edge is a control flow that symbolizes the abrupt exit from the interruptible region. It can thus be provided with all the attributes of an ordinary control flow.
+
+![IAR](BehavioralDiagrams/ActivityDiagram/IAR.PNG)
+
+The execution of all, possibly parallel actions is mostly aborted in response to a signal reception, and the interruption area is left via the flash arrow. In the figure above, for example, the restaurant visit is aborted if the signal Appointment forgotten is received. However, it is quite possible that one of the activities or actions within the interruption area forces an abort.
+
+Alternatively, the interruption edge can be noted with a small lightning symbol above the control flow.
+
+![BLITZ](BehavioralDiagrams/ActivityDiagram/blitzsymbol.PNG)
+
+### Usage
+
+Interrupt areas are mostly used when several nested or parallel processes are to be aborted at once in the event of an error or when the handling of errors is to be outsourced to actions provided specifically for this purpose.
+
+## Expansion Region
+
+![Expansion Region](BehavioralDiagrams/ActivityDiagram/ExpansionRegion.PNG)
+
+### Description
+
+> An **Expanion Region** is a composite activity that is executed repeatedly for each individual element passed in a collketion.
+
+The input parameters of an expansion region mostly represent collations of elements. The types of the elements of different collections may be different. However, within a collection the elements must have the same type.
+
+During execution, the elements of the input collection are taken one by one, processed and placed at the same position in the output collection. The expansion area process is completely repeated for each element of the input position.
+
+The expansion scope from the figure above is passed a collection of whereabouts as an itinerary. A hotel is booked for each individual whereabouts, which changes its state to booked. After booking, each individual stay is placed in the output collection at the same position as in the input collectino.
+
+![Expansion Region with constant](BehavioralDiagrams/ActivityDiagram/constants.PNG)
+
+The input and output collections are modeled as so-called *expansion nodes*. Outside the expansion region they appear only as collections, inside each element is taken and processed individually.
+
+It is quite possible to pass a single object to an expansion region. During the repeated processing of all elements of an input collection, the object acts as a constant and is used unchanged during each run:
+
+The object PI is reused as a constant during every single pass of the expansion area in the figure above.
+
+The processing type of the individual elements of the input collection can be defined by the following keywords:
+
+* **parallel:** The processing of the elements can be done in parallel in different threads.
+* **iterative:** The processing of the elements must take place sequentially, i.e. only after an element of the input collection has been completely processed and stored in the output collection can the processing of the next element be started.
+* **stream:** The expansion area processes the elements as one data stream.
+
+If the expansion area includes only a single activity or action, it can also be noted in a simplified way in the following way:
+
+![Calculate Circle Area](BehavioralDiagrams/ActivityDiagram/CalculateCircleArea.PNG)
+
+### Usage
+
+If a set of objects is to be processed in the same way, an expansion area is a good choice. It can also be emulated using individual objects, decision and connection nodes. However, the resulting activity diagram becomes much more complicated and confusing.
