@@ -1717,21 +1717,21 @@ If a set of objects is to be processed in the same way, an expansion area is a g
 
 # 10. Zustandsdiagramm / State diagram
 
-## Anwendungsbereiche
+## Application areas
 
-State Machine Diagrams modellieren wie Aktivitätsdiagramme das dynamische Verhalten eines Systems. Im Gegensatz zu Aktivitätsdiagrammen, die ihren Fokus auf die Aktionen eines Systems legen, konzentrieren sich Zustandsdiagramme auf die Rekationen eines Systems.
+State Machine Diagrams, like activity diagrams, model the dynamic behavior of a system. Unlike activity diagrams, which focus on the actions of a system, state machine diagrams focus on the recations of a system.
 
-Aus diesem Grund eignen sich Zustandsdiagramme beispielsweise sehr gut zur Modellierung des Verhaltens von Benutzeroberflächen, die üblicherweise nur auf Befehle von Benutzern reagieren und selbst keine eigenen Aktionen initiieren. Solche Diagramme werden als Verhaltens-Zustandsdiagramme bezeichnet.
+For this reason, statecharts are very suitable, for example, for modeling the behavior of user interfaces, which usually respond only to commands from users and do not initiate their own actions. Such diagrams are called behavioral statecharts.
 
-Die Modellierung von Kommunikationsprotokollen, die Vorgaben über die Reihenfolge und Voraussetzungen von Kommunikationsschritten definieren, kann ebenfalls mit Zustandsdiagrammen durchgeführt werden. Die UML bezeichnet diese speziellen Zustandsdiagramme als Protokoll-Zustandsdiagramme.
+Modeling of communication protocols that define specifications about the order and prerequisites of communication steps can also be done with state diagrams. UML refers to these special state diagrams as protocol state diagrams.
 
-Das Buch konzentriert sich auf die bei Weitem am häufigsten verwendeten Verhaltens-Zustandsdiagramme und wird die Unterschiede zwischen den beiden Zustdansdiagrammarten am Ende des Kapitels behandeln.
+The book will focus on by far the most commonly used behavioral statecharts and will cover the differences between the two types of statecharts at the end of the chapter.
 
-Eingesetzt werden Zustandsdiagramme zumeist zur Ergänzung von Klassendiagrammen in der Analyse/Definition- und Entwurf/Design-Phase, also dort, wo der Lebensweg von Objekten modelliert wird. Jedes Objekt, das anch dem Bauplan einer Klasse erzeugt wurde, befindet sich jederzeit in einem bestimmten Zustand, der durch seine Attributwerte definiert ist. Während seiner Lebensdauer (von der Instanziierung bis zu seiner Destruktion) kann ein Objekt nur bestimmte sinnvolle Kombinationen von Attributwerten und somit Zuständen einnehmen, die mithilfe von Zustandsdiagrammen modelliert werden können.
+Statecharts are mostly used to complement class diagrams in the analysis/definition and draft/design phases, i.e., where the lifecycle of objects is modeled. Each object created to the blueprint of a class is at all times in a particular state defined by its attribute values. During its lifetime (from instantiation to destruction), an object can only take on certain meaningful combinations of attribute values and thus states, which can be modeled using statecharts.
 
-In unterschiedlichen Zuständen reagiert ein Objekt auf diesebeln Anfragen möglicherweise unterschiedlich. 
+In different states, an object may respond differently to thesebel requests. 
 
-## Notationselemente
+## Notation elements
 
 ## Simple State
 
@@ -1739,121 +1739,123 @@ In unterschiedlichen Zuständen reagiert ein Objekt auf diesebeln Anfragen mögl
 
 ### Description
 
-> Ein ***Simple State*** modelliert eine **Situation**, in der gewisse genau definierte Bedingungen gelten.
+> A ***Simple State*** models a **situation** in which certain precisely defined conditions apply.
 
-Es kann sich dabei um eine statische Situation handeln, in der ein System beispielsweise auf eine Eingabe wartet, oder auch um eine dynamische Situation, wie z.B. um die Ausführung einer Aufgabe.
+This can be a static situation, such as a system waiting for input, or a dynamic situation, such as the execution of a task.
 
-Die obige Abbildung zeigt beide von der UML bereitgestellten Darstellungsmöglichkeiten eines Zustands.
+The figure above shows both ways of representing a state provided by UML.
 
-Der Zustand, in dem sich ein Objekt gerade befindent, wird als **aktiver Zustand** bezeichnet.
+The state that an object is currently in is called the **active state**.
 
 ### Usage
 
-Modellieren Sie Zustände, um definierte Situationen im Leben eines Objekts darzustellen. In den meisten Zustandsdiagrammen ist es eine gute Idee, einen *Ruhe*-Zustand zu modellieren, in den das modellierte Objekte sofort nach dem *Start* wechselt.
+Model states to represent defined situations in the life of an object. In most state diagrams, it is a good idea to model a *rest* state, which the modeled object enters immediately after *starting*.
 
-Im Ruhe-Zustand kann ein Objekt verbleiben, bis ein definierttes Event eintritt, nach dem die Arbeit des Objekts beginnen soll. DAs Objekt besitzt damit auch eine Art Default-Zustand, in den es jederziet nach der Beendigung seiner Arbeit, nach einem Fehler oder einem Reset zurückkehren kann.
+In the resting state, an object can remain until a defined event occurs, after which the object's work should begin. The object also has a kind of default state, to which it can return at any time after the completion of its work, after an error or a reset.
 
 ## Event and Transition
 
 ![Figure](BehavioralDiagrams/StateMachineDiagrams/3.PNG)
 
-> Eine ***Transition*** ist eine gerichtete Beziehung zwischen zwei Zuständen und stellt einen **Zustandsübergang vom Quell- zum Zielzustand** dar.
+> A ***Transition*** is a directed relationship between two states and represents a **state transition from source to target state**.
 
-So modelliert die obige Abbildung, dass nach dem Zustand *Ruhe* der Zustand *Arbeit* betreten wird.
+For example, the above figure models that after the *rest* state, the *work* state is entered.
 
-Eine Transition wird durch sogenannte Events ausgelöst. In jedem aktiven Zustand, in dem sich ein Objekt während seines Lebens befindet, treffen unterschiedliche Events auf das Objekt ein. Das Objekt kann sie ignorieren oder darauf reagieren, indem es eine Aktion durchführt und/oder seinen Zustand ändert. Die Definition der Transition besteht aus den Bestandteilen **Event [Guard]/Effekt**, deren Details im Folgenden dargestellt werden:
 
-* **Event**: Die UML definiert fünf Arten von Events:
-    * **Call Event:** Dies repräsentiert das Empfangen einer Anfrage, eine gewisse Operation durchzuführen. Der aktive Zustand reagiert darauf mit der Ausführung der geforderten Operation und einer eventuellen Transition in einen weiteren Zustand. (Siehe folgende Abbildung) Wird im Zustand *Ruhe* die Operation *arbeite* aufgerufen, wechselt das Objekt im aktuellen Zustand ein asynchrones Signal empfängt.
+A transition is triggered by so-called events. In each active state that an object is in during its life, different events hit the object. The object can ignore them or react to them by performing an action and/or changing its state. The definition of the transition consists of the components **Event [Guard]/Effect**, the details of which are shown below:
+
+* **Event**: The UML defines five types of events:
+    * **Call Event:** This represents receiving a request to perform some operation. The active state responds by executing the requested operation and possibly transitioning to another state. (See the following figure) If the *work* operation is called in the *rest* state, the object in the current state transitions to receive an asynchronous signal.
     
     ![Figure](BehavioralDiagrams/StateMachineDiagrams/4.PNG)
     
-    * **Signal Event:** Ein Signal Event wird ausgelöst, wenn das Objekt im aktuellen Zustand ein asynchrones Signal empfängt.
+    * **Signal Event:** A signal event is triggered when the object in the current state receives an asynchronous signal.
     
     ![Figure](BehavioralDiagrams/StateMachineDiagrams/5.PNG)
     
-    Empfängt das Objekt im Zustand *Ruhe* das Signal *Chef kommt*, wechselt es in den Zustand *Arbeit*.
+    If the object in the *Rest* state receives the signal *Chef is coming*, it changes to the *Work* state.
     
-   * **Change Event:** Ein Change Event wird als ein boolescher Ausdruck mit einem vorangestellten *when* notiert und ausgelöst, wenn sich einer oder mehrere Attributwerte des Objekt so ändern, dass der Wert des booleschen Ausdrucks von *false* nach *true* umschaltet.
+   * **Change Event:** A change event is written as a boolean expression preceded by *when* and is triggered when one or more attribute values of the object change such that the value of the boolean expression switches from *false* to *true*.
    
    ![Figure](BehavioralDiagrams/StateMachineDiagrams/6.PNG)
    
-    Ändern sich im Zustand *Ruhe* die Attributewerte des Objekts so, dass sein *Kontostand < 0* wird, wechselt es in den Zustand *Arbeit*.
+    In the *Rest* state, if the object's attribute values change so that its *account balance < 0*, it switches to the *Work* state.
     
-    * **Time Event:** Ein Time Event definiert einen Zeitpunkt oder eine Zeitspanne, nach der die spezifizierte Reaktion stattfinden muss.
+    * **Time Event:** A Time Event defines a point in time or a period of time after which the specified reaction must take place.
     
     ![Figure](BehavioralDiagrams/StateMachineDiagrams/7.PNG)
     
-    Das Objekt führt in der obigen Abbildung *nach der Mittagspause* sofort eine Transition in den Zustand *Arbeit* durch.
+    In the above figure, the object immediately performs a transition to the *Work* state *after lunch*.
     
-    * **Any Receive Event:** Die Reaktion auf eine Any Receive Event wird bei allen eintreffenden Events ausgeführt, für die keine gesonderte Reaktion definiert ist. Ein Any Receive Event wird mit dem Schlüsselwort *all* nortiert.
+    * **Any Receive Event:** The response to an Any Receive Event is executed on all incoming events for which no separate response is defined. An Any Receive Event is norted with the keyword *all*.
     
     ![Figure](BehavioralDiagrams/StateMachineDiagrams/8.PNG)
     
-    Trifft das Event *Kontostand < 0* ein, erfolgt eine Transition vom Zustand *Ruhe* in den Zustand *Arbeit*. Trifft ein beliebiges anderes Event ein (*all*), erfolgt ein Wechsel in den Zustand *Shopping* (siehe obige Abbildung).
+    If the event *Account balance < 0* arrives, a transition from the state *Rest* to the state *Work* takes place. If any other event occurs (*all*), a transition to the state *Shopping* takes place (see above figure).
     
-    Lösen Events dieslbe Transition aus, können sie, durch Kommas getrennt, hintereinander notiert werden (siehe folgende Abbildung):
+    If events trigger this transition, they can be noted one after the other, separated by commas (see the following figure):
     
     ![Figure](BehavioralDiagrams/StateMachineDiagrams/9.PNG)
     
-    * **Guard:** Ein Transition Wird nur ausgeführt, wenn ihr Guard zu *true* ausgewertet wird. Obwohl er ebenfalls mit einem booleschen Ausdruck notiert wird (eingeschlossen in eckigen Klammern), sollt eer nicht mit dem Change Event verwechselt werden. Es ist durchaus üblich, dass ein Change Event eine Transition eigentlich triggert, sie aufgrund des Guards jedoch nicht ausgeführt wird.
+    * **Guard:** A Transition Will only be executed if its Guard evaluates to *true*. Although it is also notated with a Boolean expression (enclosed in square brackets), it should not be confused with the Change Event. It is quite common that a change event actually triggers a transition, but it is not executed because of the guard.
     
     ![Figure](BehavioralDiagrams/StateMachineDiagrams/10.PNG)
     
-    In der obigen Abbildung würde das Objekt eigentlich bei einem *Kontostand < 0* vom Zustand *Ruhe* zu *Arbeit* wechseln. Hat es jedoch keine *Lust zu arbeiten*, wird die Transition nicht ausgeführt.
+    In the above figure, the object would actually switch from the *rest* to *work* state when the *account balance < 0*. However, if it has no *desire to work*, the transition is not executed.
     
-    * **Effekt:** Ein Effekt definiert Aktionen, die bei einer Transition ausgeführt werden, und wird nach einem Schrägstrich notiert.
+    * **Effect:** An effect defines actions that are performed on a transition, and is noted after a slash.
     
     ![Figure](BehavioralDiagrams/StateMachineDiagrams/11.PNG)
     
-    Ist der *Kontostand* des Objekts kleiner als *0*, führt es die Aktion *Zur Arbeitsstelle gehen* durch und wechselt danach in den Zustand *Arbeit*.
+    If the object's *account balance* is less than *0*, it performs the *Go to Work* action and then changes to the *Work* state.
     
-    Eine Sequenze von Aktionen während einer Transition kann auch auf die folgen Art notiert werden:
+    A sequence of actions during a transition can also be noted in the following way:
     
     ![Figure](BehavioralDiagrams/StateMachineDiagrams/12.PNG)
     
-    Nachdem das Objekt realiserit hat, dass sein *Kontostand < 0* ist, verlässt es laut dem Zustandsdiagramm aus der obigen Abbildung sein Bett, geht zu seiner Arbeitsstelle und wechselt in den Zustand *Arbeit*.
+    According to the state diagram from the figure above, after the object has realized that its *account balance is < 0*, it leaves its bed, goes to its workstation and changes to the *work* state.
     
-    Die UML erlaubt ebenfalls, während einer Transition Signale zu senden und zu empfangen:
+    The UML also allows to send and receive signals during a transition:
     
     ![Figure](BehavioralDiagrams/StateMachineDiagrams/13.PNG)
     
-    Nachdem das Objekt das Signal *Verspätet* auf seinem Weg zur Arbeit empfangen hat, sendet es das Signal *Taxi!* und fährt zu seiner Arbeitsstelle.
+    After receiving the signal *Delayed* on its way to work, the object sends the signal *Taxi!* and drives to its workplace.
     
 
-Wie bereits zuvor erwähnt wurde, definiert die UML unterschiedliche Arten von Reaktionen, die ein Objekt bei einem Event durchführen kann:
 
-* **Ignorieren von Events:** Trifft ein Event auf einen aktiven Zustand, der keinerlei Definition enthält, wie darauf reagiert werden soll, wird es konsumiert (es wird nicht aufbewahrt), löst jedoch keinerlei Reaktion aus.
-* **Transition zu einem anderen Zustand:** Als Folge des Empfangens eines Events wird eine Transition zu einem anderen Zustand durchgeführt.
-* **Interne Aktionen:** Aufgrund eines Events wird lediglich eine Aktion ausgeführt, der Zustand wechselt nicht.
+As mentioned earlier, the UML defines different types of reactions that an object can perform when an event occurs:
+
+* **Ignore Events:** If an event encounters an active state that does not contain any definition of how to react to it, it is consumed (it is not kept) but does not trigger any reaction.
+* **Transition to another state:** As a result of receiving an event, a transition to another state is performed.
+* **Internal actions:** As a result of an event, only an action is performed, the state does not change.
 
 ![Figure](BehavioralDiagrams/StateMachineDiagrams/14.PNG)
 
 
-Tritt laut die obige Abbildung das Event *Wecker klingelt* im aktiven Zustand *Ruhe* ein, wird die Aktion *Aufstehen* ausgeführt, der Zustand wechselt jedoch nicht.
+If according to the above figure the event *Alarm clock rings* occurs in the active state *Rest*, the action *Get up* is executed, but the state does not change.
 
-Die UML definiert zusätzlich drei spezielle Arten von internen Aktionen.
+The UML additionally defines three special types of internal actions.
 
 ![Figure](BehavioralDiagrams/StateMachineDiagrams/15.PNG)
 	
-	* **entry:** Die Aktion wird beim Betreten des Zustands ausgeführt und zu Ende gebracht, bevor jegliche weitere Aktionen aufgerufen werden.
-	* **do:** Die Aktion startet nach dem Betreten des Zustands (und nach einer eventuellen *entry*-Aktion) und wird so lange ausgeführt, bis sie endet oder der Zustand wieder verlassen wird.
-	* **exit:** Vor dem Verlassen eines Zustands, jedoch nach der *entry*- oder auch der *do*-Aktion wird die *exit*-Aktion aufgerufen und vollständig abgearbeitet. Der Zustand kann erst hiernach verlassen werden. Die obigen Abbildung modelliert, dass beim etreten des Zustands *Ruhe* das Objekt sich *schlafen legt(entry)*, es während des gesamten Zustands *schläft* und vor seinem Verlassen wieder *aufwacht*.
-* **Verzögern von Events:** Ein bestimmtes Event kann **deferred** werden, falls im jeweiligen Zustand nicht darauf reagiert werden soll. Das Event wird aufbewahrt und bei jedem Zustandswechsel dem neuen Zustand angeboten, bis das Objekt einen Zustand erreicht, in dem das verzögerte Event eine Reaktion auslöst und das Event damit *verbraucht* wird.
+	* **entry:** The action is executed when the state is entered and completed before any further actions are invoked.
+	* **do:** The action starts after entering the state (and after any *entry* action) and is executed until it ends or the state is exited again.
+	* **exit:** Before leaving a state, but after the *entry* or also the *do* action, the *exit* action is called and completely processed. The state can only be exited after this. The above illustration models that when the *rest* state is entered, the object *goes to sleep(entry)*, it *sleeps* throughout the state, and *wakes up* before exiting.
+* **Delay events:** A particular event can be **deferred** if it is not to be acted upon in the particular state. The event is kept and offered to the new state at each state change until the object reaches a state where the delayed event triggers a response, thus *consuming* the event.
 
 ![Figure](BehavioralDiagrams/StateMachineDiagrams/16.PNG)
 
-In der obigen Abbildung wird das Event *arbeite* verzögert, wenn das Objekt *keine Lust* hat.
+In the above figure, the event *work* is delayed when the object *doesn't feel like* doing so.
 
-* **Selbst-Transition:** Die Transition erfolgt nicht zu einem anderen Zustand, sondern führt wieder zu ihrem Quellzustand zurück.
+* **Self-Transition:** The transition does not occur to another state, but returns to its source state.
 
 ![Figure](BehavioralDiagrams/StateMachineDiagrams/17.PNG)
 
-Hat das Objekt im Zustand *Arbeit* beim Empfang des Events *arbeite* tatsächlich *Lust auf Arbeit*, wechselt es erneut in seinen Zustand *Arbeit*. Im Gegensatz zu einer internen Aktion wird der Zustand tatsächlich verlassen. Eventuell definierte *exit*- bzw. *entry*-Aktionen werden demnach beim Verlassen bzw. Wiederbetreten des Zustands ausgeführt.
+If the object in the *work* state actually *feels like working* when it receives the *work* event, it switches back to its *work* state. Unlike an internal action, the state is actually exited. Any defined *exit* or *entry* actions are therefore executed when the state is exited or re-entered.
 
 ### Use Case
 
-Events und Transitionen erlauben die Modellierung des Verhaltens von Objekten als Reaktionen auf Einflüsse ihrer Umgebung. Wie eingangs dargestellt wurde, kann ein Objekt in Abhängigkeit von seinem Zustand auf die gleichen Einflüsse unterschiedlich reagieren.
+Events and transitions allow the behavior of objects to be modeled as reactions to influences from their environment. As was shown at the beginning, an object can react differently to the same influences depending on its state.
 
 ## Initial state, End state and Terminator
 
@@ -1861,24 +1863,26 @@ Events und Transitionen erlauben die Modellierung des Verhaltens von Objekten al
 
 ### Description
 
-> Der ***Initial State*** stellt den **Startpunkt** des Zustandsautomaten dar.
+> The ***Initial State*** represents the **start point** of the state machine.
 
-In einem Zustandsautomat darf maximal ein Startzustand definiert werden. Nach der Instanziierung eines Objekts beginnt sein *Lebensweg* im Startzustand, wobei dieser sofort verlassen wird. Aus diesem Grund darf die Durchführung einer Transition aus einem Startzustand nicht durch Guards oder Events eingeschränkt werden. Die Durchführung einer Aktion ist gestattet.
+A maximum of one initial state may be defined in a state machine. After instantiation of an object, its *lifecycle* starts in the initial state, leaving it immediately. For this reason, the execution of a transition from a start state may not be restricted by guards or events. The execution of an action is allowed.
 
-> Die Ausführung einer **Region oder Eben von Zuständen** ist beim Erreichen eines **Final State** beendet.
-> Die Ausführung eines ganzen **Zustandsautomaten** ist beim Erreichen eines **Terminator** beendet.
+> The execution of a **region or level of states** is terminated when a **final state** is reached.
+> The execution of an entire **state machine** is terminated when a **terminator** is reached.
 
-Ein Zustandsautomat kann beliebig viele Endzustände und Terminatoren enthalten. Das Ende der Ausführung eines Zustandsautomaten markiert auch das Lebensende des Objekts, dessen Lebensweg der Zustandsautomat beschreibt.
+A state machine can contain any number of final states and terminators. The end of execution of a state machine also marks the end of life of the object whose life path the state machine describes.
 
-Zustände können weitere Zustände oder Regionen enthalten. Beim Erreichen eines Endzustands wird nur die Ausführung der Region oder Ebene von Zuständen beendet, in der er sich befindet. Wird er in der höchsten Ebene modelliert, wird bei seinem Erreichen auch die Ausführung des gesamten Zustandsautomaten beendet.
+States can contain other states or regions. When a final state is reached, only the execution of the region or level of states in which it is located is terminated. If it is modeled at the highest level, when it is reached, execution of the entire state machine is also terminated.
 
-Der Terminator hingegen beendet die Ausführung des gesamten Zustandsautoamten, unabhängig davon, in welcher Ebene oder Region er modelliert wird.
+The terminator, on the other hand, terminates execution of the entire state machine, regardless of the level or region in which it is modeled.
 
 ### Usage
 
-Durh den Einsatz von Start- und Endknoten können Sie den gewünschten Anfangszustand bzw. das Ausführungsende des Zustandsautomaten festlegen. Jeder vollständige Zustandsautomat muss einen Start- und mindestens einen Endknoten besitzen.
+By using start and end nodes, you can specify the desired initial state or execution end of the state machine. Every complete state machine must have a start node and at least one end node.
 
-Der Terminator wird zumeist eingesetzt, um einen abrupten Abbruch zu erzwingen, was beispielsweise in schwerwiegenden Fehlerfällen wünschenswert sein kann.
+
+
+The terminator is mostly used to force an abrupt termination, which may be desirable in severe error cases, for example.
 
 ## Choices and Junction
 
@@ -1886,31 +1890,31 @@ Der Terminator wird zumeist eingesetzt, um einen abrupten Abbruch zu erzwingen, 
 
 ### Description
 
-> Eine ***Junction*** modelliert eine **Hintereinanderschaltung** von **Transitionen**.
+> A ***junction*** models a **interconnection** of **transitions**.
 
-Kreuzung können verwendet werden, um mehrere eingehende Transitionen zu einer ausgehenden zu transformieren. Umgekehrt kann eine eingehende Transition in mehrere mit Guards überwachte Transitionen aufgeteilt werden, wodurch eine Art **statische Verzweigung** modelliert wird. Statisch bedeutet in diesem Fall, dass die Entscheidung über die ausgehende Transition bereits vor dem Erreichen der Kreuzung getroffen wird.
+Junction can be used to transform multiple incoming transitions into one outgoing one. Conversely, an incoming transition can be split into multiple transitions monitored with guards, modeling a kind of **static branching**. Static in this case means that the decision about the outgoing transition is made before the crossing is reached.
 
-> ***Choices*** modellieren **dynamische Verzweigung**.
+> ***Choices*** model **dynamic branching**.
 
-Eine eingehende Transition wird an einer Entscheidung in mehrere mit Guards überwachte Transitionen aufgeteilt. Im Unterschied zu einer Kreuzung (statisch) wird die ausgehende Transition dynamisch erst beim Erreichen der Entscheidung ausgewählt.
+An incoming transition is split at a decision into several transitions monitored with guards. In contrast to a crossing (static), the outgoing transition is dynamically selected only when the decision is reached.
 
-Der Unterschied zwischen einer statischen und dynamischen Entscheidung lässt sich anhand von der obigen Abbildung verdeutlichen. Nach dem Start wird sowohl im rechte wie im linken Zustandsdiagramm im Zustand *Ruhe* das Attribut *Lust zu arbeiten* auf *true* gesetzt. Die ausgehende Transition setzt es wieder auf *false*.
+The difference between a static and a dynamic decision can be illustrated by the figure above. After the start, the attribute *Lust to work* is set to *true* in the state *rest* in both the right and left state diagrams. The outgoing transition sets it back to *false*.
 
-Im rechten Zustandsdiagramm wird zunächst die ausgehende Transition ausgeführt, der Attributwert also auf *false* gesetzt, bevor an der Entscheidung die nächste Transition bestimmt wird. Der nächste Zustand würde hiert *Entspannung* sein.
+In the right state diagram, the outgoing transition is executed first, so the attribute value is set to *false* before the next transition is determined at the decision. The next state would be *relax*.
 
-Im linken Zustandsdiagramm wird die Auswahl der nächsten Transition bereits beim Verlassen des Zustands *Ruhe* getroffen. Der Attributwert von *Lust zu arbeiten* ist an diser Stelle noch *true*, sodass die Transition zum Zustand *Arbeit* gewählt wird.
+In the left state diagram, the selection of the next transition is already made when leaving the *Rest* state. The attribute value of *Lust to work* is still *true* at this point, so the transition to the state *Work* is selected.
 
-Damit kann das linke Zustandsdiagramm auch so notiert werden, wie in der folgenden Abbildung dargestellt.
+Thus the left state diagram can also be notated as shown in the following figure.
 
 ![Figure](BehavioralDiagrams/StateMachineDiagrams/20.PNG)
 
-Die Zustandsdiagramme aus der obigen Abbildung sind semantisch äquivalent.
+The state diagrams from the figure above are semantically equivalent.
 
 ### Usage
 
-Entscheidungen werden zur Modellierung alternativer Lebenswege eines Objekts eingesetzt. Achten Sie darauf, dass die Guards an den ausgehenden Transitionen die Übergangsbedingungen erschöpfend und disjunkt definieren. Ist dies nicht möglich oder zu aufwendig, fügen Sie einen Guard hinzu, der alle sonstigen Übergangsbedingungen zusammengfasst (*[else]*).
+Decisions are used to model alternative life paths of an object. Make sure that the guards on the outgoing transitions define the transition conditions exhaustively and disjointly. If this is not possible or too costly, add a guard that summarizes all other transition conditions (*[else]*).
 
-Kreuzungen können sowohl als dynamische Entscheidungen wie auch zur Zusammenfassung und Verzweigung von Transitionen verwendent werden. Ihre größten Vorteile offenbaren sich bei vielen sich kreuzenden Transitionen, deren Struktur durch den Einsatz von Kreuzungen deutlich vereinfacht wird.
+Crossings can be used as dynamic decisions as well as for summarizing and branching transitions. Their greatest advantages are revealed when there are many intersecting transitions, whose structure is greatly simplified by the use of intersections.
 
 ## Composite Sites
 
@@ -1918,49 +1922,49 @@ Kreuzungen können sowohl als dynamische Entscheidungen wie auch zur Zusammenfas
 
 ### Description
 
-> ***Composite States*** modellieren Hierarchien von Zuständen.
+> ***Composite States*** model hierarchies of states.
 
-Die obigen Abbildung zeigt drei solche zusammengesetzte Zustände:
+The figure above shows three such composite states:
 
-* *Arbeit*
-    * Dieser Zustand beshtet aus einem Start- und Endzustand sowie aus den Zuständen *Passiv* und *Aktiv*. Der Letztere wird sofort nach der Aktivierung des Zustands *Arbeit* betreten.
-* *Aktiv*
-    * Neben einem Start- und Endzustand und einem Terminator beinhaltet *Aktiv* die Zustände *Motiviert* und *Unmotiviert*. Anhand diese Beispiels wird der Unterschied zwischen einem Endzustand, der nur das Verlassen des Zustands *Aktiv* bewirkt, und einem Terminator, der das Verlassen des gesamten Zustandsautomaten veranlasst, noch deutlicher. Unmittelbar nach dem Betreten des *Aktiv*-Zustands erfolgt eine Transition in den Zustand *Motiviert*. Hat das Objekt *Keine Lust*, wechselt es in den Zustand *Unmotiviert*. Beim Event *Feierabend* wird die Ausführung des gesamten Zustandsautomaten abgebrochen, bei *Pause* nur der Zustand *Aktiv*, und es erfolgt eine TRansition in den Zustand *Passiv*.
-* *Passiv*
-    * *Passiv* ist ebenfalls ein zusammengesetzter Zustand, der weitere Unterzustände beinhaltet. Erkennbar ist dies an den zwei kleinen verbunden Zuständen. Seine inneren Zustände sind in diesem Diagramm ausgeblendet und müssen in einem separaten Zustandsdiagram spezifiziert werden. Wird in diesem Zustand das Event *Pause beendet* empfangen, erfolgt ein Wechsel in den Zustand *Aktiv*; bei *Feierabend* wird die Ausführung des Zustandsautomaten beendet.
+*Work*
+    * This state consists of a start and end state as well as the states *Passive* and *Active*. The latter is entered immediately after the activation of the *Work* state.
+* *Active*
+    * In addition to a start and end state and a terminator, *Active* contains the states *Motivated* and *Unmotivated*. Using this example, the difference between an end state, which only causes the *Active* state to be exited, and a terminator, which causes the entire state machine to be exited, becomes even clearer. Immediately after entering the *Active* state, there is a transition to the *Motivated* state. If the object *Does not feel like*, it transitions to the *Unmotivated* state. At the event *Holiday* the execution of the whole state machine is aborted, at *Pause* only the state *Active*, and a TRansition into the state *Passive* takes place.
+* *Passive*
+    * *Passive* is also a composite state, which contains further sub-states. This can be recognized by the two small connected states. Its inner states are hidden in this diagram and must be specified in a separate state diagram. If the event *Pause finished* is received in this state, a change to the state *Active* takes place; at *Pause finished* the execution of the state machine is terminated.
     
-In einem hierarchischen Zustandsdiagramm, wie es durch zusammengesetzte Zustände ensteht, können mehrere Zustände, die in einer hierarchischen Beziehung zueinander stehen, gleichzeitig aktiv sein. Ist beispielswiese in der obigen Abbildung der Zustand *Motiviert* aktiv, sind gleichzeitg alle Zustände, die in derselben hierarchischen Beziehung über ihm stehen, aktiviert.
+In a hierarchical state diagram, as it results from composite states, several states, which are in a hierarchical relationship to each other, can be active at the same time. For example, in the figure above, if the state *Motivated* is active, then all states above it in the same hierarchical relationship are active at the same time.
 
-Ein zusammengesetzer Zustand kann auf fünf unterschiedliche Arten betreten werden. Beachten Sie bitte, dass es sich hierabei um kein korrektes Zustandsdiagramm handelt, da es mehrere STartpunkte auf einer Ebene enthält. Es erfüllt jedoch seinen Zweck als anschauliches Beispiel.
+A composite state can be entered in five different ways. Note that this is not a proper state diagram, since it contains multiple STart points on one level. However, it serves its purpose as an illustrative example.
 
 ![Figure](BehavioralDiagrams/StateMachineDiagrams/23.PNG)
 
-* **Default Entry:** Die Transition endet am Rand des zusammnengesetzten Zustands, womit der modellierte Startzustand angesprungen und die Transition zum Zustand *Aktiv* durchgeführt wird.
-* **Explicit Entry:** Die Transition druchbricht den Rand des zusammengesetzten Zustands und führt direkt zu einem speziellen Unterzustand. Hierdurch wird der vorgegebene Startzustand umgangen und ein explizierter Unterzustand aktiv.
-* **Shallow History Entry:** Die Transition durchbricht den Rand eines zusammengesetzten Zustands und führt zum Notationselement der flachen HIstorie (ein *H* umgeben von einem Kreis). Wurde der zusammengesetzte Zustand bereits bertreten, wird damit der letzte vor dem Verlassen des Zustands aktive Unterzustand der obersten Ebene betreten. In unserem Beispiel könnte die *Aktiv* oder *Passiv* sein. Bei erstmaligem Betreten des zusammengesetzen Zustands wird die von der flachen Historie ausgehende Transition ausfgeführt.
-* **Deep History Entry:** Die Transition durchbricht den Rand eines zusammengesetzten Zustands und führt zum NOtationselement der tiefen Historie (ein *H\** umgeben von einem Kreis). Wurde der zusammengesetzte Zustand bereits betreten, wird damit der letzte vor dem Verlassen des Zustands aktive Unterzustand der tiefstmöglichen Ebene betreten. In unserem Beispiel könnte dies *Motiviert*, *Unmotiviert* oder einer der nicht gezeigten Unterzustände von *Passiv* sein. Bei erstmaligem Betreten des zusammengesetzten Zustands wird die von der tiefen Historie ausgehende Transition ausgeführt. Flache und tiefe Historie stellen damit eine Art Gedächtnis von Zustandsautomaten dar.
-* **Entry Point Entry:** Die Transition endet am Eintrittspunkt eines zusammengesetzten Zustands, womit die den Eintrittspunkt verlassende Transition ausgeführt wird.
+* **Default Entry:** The transition ends at the edge of the composite state, which jumps to the modeled initial state and makes the transition to the *Active* state.
+* **Explicit Entry:** The transition breaks the edge of the composite state and leads directly to a special sub-state. This bypasses the default start state and makes an explicit substate active.
+* **Shallow History Entry:** The transition breaks the boundary of a composite state and leads to the flat HIstory notation element (an *H* surrounded by a circle). If the composite state has already been entered, this enters the last top-level sub-state that was active before the state was exited. In our example, this could be *Active* or *Passive*. When the composite state is entered for the first time, the transition originating from the shallow history is executed.
+* **Deep History Entry:** The transition breaks the edge of a composite state and leads to the deep history NOtation element (a *H\** surrounded by a circle). If the composite state has already been entered, this enters the last sub-state of the deepest possible level that was active before the state was exited. In our example, this could be *Motivated*, *Unmotivated*, or one of the sub-states of *Passive* not shown. When the composite state is first entered, the transition originating from the deep history is executed. Shallow and deep histories thus represent a kind of memory of state machines.
+* **Entry Point Entry:** The transition ends at the entry point of a composite state, which executes the transition leaving the entry point.
 
-Umgekehrt ist es erwartungsgemäß auch möglich, einen zusammengesetzten Zustand auf unterschiedliche Arten zu verlassen:
+Conversely, as expected, it is also possible to exit a composite state in different ways:
 
-* **Austritt über Endzustand**
-    * Der Endzustand beendet lediglich die Ausführung des zusammengesetzen Zustands, der ihn enthält. In der folgenden Abbildung kann der Unterzustand *Aktiv* durch den Endzustand *Ende* beendet werden. Daraufhin wird die Transition zum Zustand *Passiv* ausgeführt.
+* **Exit via final state**.
+    * The end state simply terminates the execution of the composite state that contains it. In the following figure, the sub-state *Active* can be terminated by the end state *End*. The transition to the *Passive* state is then executed.
     
     ![Figure](BehavioralDiagrams/StateMachineDiagrams/24.PNG)
-* **Austritt über Terminator**
-    * Durch den Terminator wird jeder Zustand verlassen, da die Ausführung des gesamten Zustandsautomaten beendet wird und dmait der modellierte Lebensweg des Objekts endet.
-* **Transition aus einem zusammengesetzten Zustand**
-    * Empfängt ein zusammengesetzter Zustand ein Event, das eine ausgehende Transition aktiviert, werden die inneren Zustände und der zusammengesetzte Zustand verlassen. Der Zustand *Arbeit* aus der obigen Abbildung wird beim Empfangen des Events *entlassen* verlassen.
-* **Transition aus einem inneren Zustand**
-    * Empfängt ein innerer Zustand ein Event, das eine Transition aktiviert, die aus dem zusammengesetzten Zustands herausführt, wird dieser ebenfalls verlassen. In der obigen Abbildung reagiert der Zustand *Unmotiviert* auf das Event *gefeuert* mit dem Verlassen des gesamten zusammengesetzten Zustands *Arbeit*.
-* **Exit Point Exit**
-    * Nach der Ausführung einer Transition zu einem Austrittspunkt des zusammengesetzen Zustands wird dieser verlassen, und die vom Austrittspunkt ausgehenden Transition wird ausgeführt.
+* **Exit via Terminator**
+    * *Exit via terminator * *Exit via terminator * *Exit via terminator * *Exit via terminator * *Exit via terminator * *Exit via terminator * *Exit via terminator * *Exit via terminator * *Exit via terminator * *Exit via terminator * *Exit via terminator
+* **Transition from a composite state**.
+    * If a composite state receives an event that activates an outgoing transition, the inner states and the composite state are exited. The *work* state from the figure above is exited when the *release* event is received.
+* **Transition from an inner state**.
+    * If an inner state receives an event that activates a transition leading out of the composite state, the composite state is also exited. In the figure above, the *Unmotivated* state responds to the *Fired* event by exiting the entire composite *Work* state.
+* **Exit Point Exit**.
+    * After executing a transition to an exit point of the composite state, the composite state is exited and the transition originating from the exit point is executed.
 
 ### Use Case
 
-Zusammengesetzte Zustände erlauben es Ihnen, ein und dasselbe Zustandsdiagramm mit unterschiedlichen Abstrahierungsgraden zu modellieren. Ausgehend von einer groben Schicht auf das Zustandsdiagramm, kann es in iterativen Schritten verfeinert und detailliert werden.
+Composite states allow you to model the same state diagram with different levels of abstraction. Starting from a rough layer on the state diagram, it can be refined and detailed in iterative steps.
 
-Das Ausblenden von internen Zuständen ermöglicht andersherum auch das Herauszoomen aus dem Diagramm.
+Hiding internal states also allows zooming out from the diagram the other way around.
 
 ## Region
 
@@ -1968,131 +1972,132 @@ Das Ausblenden von internen Zuständen ermöglicht andersherum auch das Herauszo
 
 ### Description
 
-> ***Regions*** teilen zusammengesetzte Zustände oder ganze Zustandsautomaten **in disjunkte Bestandteile** auf.
+***Regions*** divide composite states or entire state machines **into disjoint components**.
 
-Jede Region kann einen eigenen Start- und mehrere eigene Endzustände haben. Wird eine Region betreten, werden standardmäßig alle Startzustände aktiv und führen nebenläufig die modellierten Transitionen zu den nachfolgenden Zuständen durch. (Transitionen zwischen unterschiedlichen Regionen sind verboten.)
+Each region can have its own start state and several of its own end states. When a region is entered, by default all start states become active and perform concurrently the modeled transitions to subsequent states. (Transitions between different regions are prohibited).
 
-Endzustände bewirken das Verlassen der jeweiligen Region, in der sie sich befinden. Der gesamte zusammengesetzte Zustand oder Zustandsautomat wird nur verlassen, nachdem alle Regionen ihre Endzustände erreicht haben. Erreicht eine der Regionen jedoch einen Terminator, wird der gesamt Zustandsautomat oder zusammengesetzte Zustand verlassen.
+End states cause the respective region in which they are located to exit. The entire composite state or state machine is exited only after all regions have reached their final states. However, if one of the regions reaches a terminator, the entire state machine or composite state is exited.
 
-Die obige Abbildung modelliert einen Zustand *Restaurantbesuch* mit zwei Regionen, die mit den optionalen Namen *Geist* und *Körper* ausgezeichnet sind.
+The figure above models a *restaurant visit* state with two regions labeled with the optional names *mind* and *body*.
 
-Nach dem Aktivieren des orthogonal zusammengesetzen Zustands (wie ein Zustand mit Regionen auch bezeichnet wird)  befindet sich der *Geist* im Zustand *Angespannt*. Nachdem er sich *entspannt* hat, wechslet er in den Zustand *Entspannung* und erreicht den Endzustand seiner Region.
+After activating the orthogonally composite state (as a state with regions is also called), the *mind* is in the *relaxed* state. After it has *relaxed*, it changes into the state *relaxed* and reaches the final state of its region.
 
-Parallel hierzu wechselt der *Körper* in den Zustand *Hungrig*, in dem die andauernde Aktion *essen* ausgeführt wird, wonach der Zustand *Gesättigt* und anschließend der Endzustand der Region erreicht wird.
+Parallel to this, the *body* changes into the state *hungry*, in which the continuous action *eat* is executed, after which the state *satiated* and then the final state of the region is reached.
 
-Das Betreten und Verlassen von Regionen kann ebenfalls mithilfe von ***fork*** und ***join*** notiert werden.
+Entering and exiting regions can also be noted using ***fork*** and ***join***.
 
 ![Figure](BehavioralDiagrams/StateMachineDiagrams/26.PNG)
 
 ### Description
 
-Mithilfe von Regionen können gleichzeitig auftretenden Zustände eines Objekts modelliert werden. Am häufigsten wird davon bei der Zustandsmodellierung von inneren Bestandteilen von Klassen Gebrauch gemacht.
+Regions can be used to model simultaneously occurring states of an object. The most common use of this is in state modeling of internal components of classes.
 
 ## Frames
 
-> Ein ***Zustandsautomat*** kann ***von einem Frame umfasst*** und benannt werden. Das Kürzel ***sm*** steht für ***state machine***.
+> A ***state machine*** can be ***enclosed*** and named by a frame. The abbreviation ***sm*** stands for ***state machine***.
 
-Durch die Umrahmung und Benennung ermöglicht man die Referenz des Zustandsautomaten in weiteren Zustandsautomaten.
+Framing and naming enables the reference of the state machine in further state machines.
 
-Hierzu können statt Start- und Endzuständen ***Entry/Exit Points*** definiert werden, wodurch die Folge der Transitionen für die Wiederverwendung noch klarer wird.
+For this purpose, ***Entry/Exit Points*** can be defined instead of start and end states, which makes the sequence of transitions even clearer for reuse.
 
 ![Figure](BehavioralDiagrams/StateMachineDiagrams/27.PNG)
 ![Figure](BehavioralDiagrams/StateMachineDiagrams/28.PNG)
 
-Der Zustandsautomat *Prüfung* wird durch den Eintrittspunkt *Prüfbeginn* betreten. Verlassen wird er entweder über den Austrittspunkt *Bestanden* oder *Durchgefallen*.
+The state machine *Test* is entered by the entry point *Test start*. It is exited either by the exit point *Passed* or *Failed*.
 
-Nun kann der Zustandsautomat sehr einfach wiederverwendet werden.
+Now the state machine can be reused very easily.
 
-Der wiederverwendetet Zustandsautomat wird als ein einfacher Zustand modelliert und über Eintritts- bzw. Austrittspunkte betreten und wieder verlassen. Hinter seiner Zustandsbezeichnung wird, durch einen Doppelpunkt getrennt, der Name des Zustandsautomaten notiert, der wiederverwendet wird. Die notation deutet damit auf eine Art Instanziierung eines Zustandsautomaten hin, wie sie Ihnen bereits aus Klasssen und Objekten bekannt sein dürfte.
+The reused state machine is modeled as a simple state and is entered and exited via entry and exit points. After its state name, separated by a colon, the name of the state machine that is reused is notated. The notation thus indicates a kind of instantiation of a state machine, as you may already be familiar with from classes and objects.
 
-Zustände, die einen Zustandsautomaten wiederverwenden, werden auch als ***Submachine States*** bezeichnet.
+States that reuse a state machine are also called ***Submachine States***.
 
 ![Figure](BehavioralDiagrams/StateMachineDiagrams/29.PNG)
 
 ### Use Case
 
-Zustandsdiagramme können in der UML konsistent in weiteren Zustandsdiagrammen wiederverwendet werden. Man erreicht dies durch die Modellierung von Rahmen, Eintritts- und Austrittspunkten und Unterzustandsautomatenzuständen.
+In UML, state diagrams can be consistently reused in further state diagrams. This is achieved by modeling frames, entry and exit points, and sub-state machine states.
 
-Die Verwendung von Unterzustandsautomaten strukturiert das Modell hierarchisch auf unterschiedlichen Abstraktionsstufen und macht es überschaubarer, lesbarer und verständlicher.
+The use of sub-state machines structures the model hierarchically at different abstraction levels and makes it more manageable, readable and understandable.
 
-## Generalisierung/Spezialisierung
+## Generalization/Specialization
 
 ![Figure](BehavioralDiagrams/StateMachineDiagrams/30.PNG)
 ![Figure](BehavioralDiagrams/StateMachineDiagrams/31.PNG)
 
 ### Description
 
-> ***Zustandsdiagramme*** können **generalisiert** und **spezialisiert** werden.
+> ***State diagrams*** can be **generalized** and **specialized**.
 
-Ein spezialisierendes Zustandsdiagramm erbt alle Elemente des generalisierenden Zustandsdiagramms und darf weitere Elemente (Regionen, Zustände, Transitionen) hinzufügen bzw neu definieren, wobei die folgenden Regeln einzuhalten sind:
+A specializing statechart inherits all elements of the generalizing statechart and may add or redefine additional elements (regions, states, transitions), following the rules below:
 
-* Ein einfacher Zustand kann zu einem zusammengesetzen Zustand oder durch Regionen erweitert werden.
-* Zustände und Transitionen einer Region können durch neue Zustände und Transitionen ersetzt werden.
-* Neue Zustände und Transitionen können hinzugefügt werden.
-* Ein zusammengesetzter Zustand kann durch weitere Unterzustände oder Regionen erweitert werden.
-* Einem zusammengesetzten Zustand können Ein- und Austrittspunkte hinzugefügt werden.
-* Ein Unterzustandsautomatenzustand kann durch einen Unterzustandsautomantenzustand ersetzt werden, der dieselben Eintritts- und Austrittspunkte besitzt
-* Der Zielzustand einer bestehendne Transition kann im spezialisiernden Zustandsdiagramm verändert werden, ihr Quellzustand und Event nicht.
-* Zustände, Transitionen und Regionen, die durch Spezialieiserung nicht mehr überschrieben und verändert werden sollen, müssen mit dme Schlüsselwort ```{final}``` gekennzeichnet werden.
+* A simple state may be extended to a composite state or by regions.
+* States and transitions of a region may be replaced by new states and transitions.
+* New states and transitions can be added.
+* A composite state can be extended by additional substates or regions.
+* Entry and exit points can be added to a composite state.
+* A sub-state automaton state can be replaced by a sub-state automaton state that has the same entry and exit points.
+* The target state of an existing transition can be changed in the specializing state diagram, its source state and event cannot.
+* States, transitions and regions that are not to be overwritten and changed by specialization must be marked with the keyword ``{final}``.
 
-Die obigen Abbildungen zeigen ein Beispiel für die Spezialisierung von ganzen Zustandsdiagrammen.
+The figures above show an example for the specialization of whole statecharts.
 
-Das Zustandsdiagramm aus der ersten obigen Abbildung modelliert einen einfachen *Parkautomaten*, der einige seiner Elemente mit ```{final}``` und damit nicht veränderbar markiert.
+The state diagram from the first figure above models a simple *parking automaton* that marks some of its elements with ``{final}`` and thus cannot be changed.
 
-Nach dem *Start* befindet er sich zunächst im *Ruhe*-Zustand. Sobald eine *Münze eingeworfen* wird, merkt er sich den *betrag* und wechselt in den Zustand *Barzahlung*, in dem so lange *Münzen eingeworfen* werden können, bis der Benutzer einen *roten Knopf* oder einen *grünen Kopf* drückt, der als Bestätigung aufgefasst wird.
+After *starting*, it is initially in a *rest* state. As soon as a *coin is inserted*, it remembers the *amount* and switches to the *cash payment* state, where *coins can be inserted* until the user presses a *red button* or a *green head*, which is taken as confirmation.
 
-Widr der rote Knopf gedrückt, erfolgt eine Auszahlung der bisher eingeworfenen Münzen. Nach der Betätigung des grünen Knopfs berechnet der *Parkautomat* die bezahlte Parkzeit, druckt einen Beleg aus und wechselt wieder in der *Ruhe*-Zustand.
+If the red button is pressed, the coins inserted so far are paid out. After the green button is pressed, the *parking machine* calculates the paid parking time, prints a receipt and changes back to the *rest* state.
 
-Das Zustandsdiagramm aus der zweiten obigen Abbildung spezialisiert den Parkautomaten aus der ersten obigen Abbildung, was am Schlüsselwort ```{extended}``` erkennbar ist. Die geerbten Zustände können an ihrem gestrichelten Rand erkannt werden.
+The state diagram from the second figure above specializes the parking machine from the first figure above, which can be seen by the keyword ``{extended}``. The inherited states can be recognized by their dashed border.
 
-Der Zustand Rückzahlung ist unverändert übernommen worden, wohingegen die Zustände *Ruhe*, *Barzahlung* und *Belegdruck* um die Aufgabe, eine *Anzeige* zu verwalten, erweitert worden sin. Der *Parkautomat* ist mithilfe des neu hinzugefügten zusammengesetzten Zustands *Kartenzahlung* um die Fähgikeit bereichert worden, die Parkgebührt mit einer *EC-Karte* zu begleichen.
+The state Payback has been inherited unchanged, whereas the states *Rest*, *Cash* and *Voucher* have been extended by the task to manage a *Display*. The *Parking machine* has been enriched with the ability to pay the parking fee with an *EC card* by means of the newly added composite state *Card payment*.
 
 ### Use Case
 
-Die Spezialisierung von Zustandsautomaten erlaubt, vollständig definierte Lebensabläufge wiederzuverwenden. Häufig werden bewusst kleiner Lebensabschnitte von Objekten in eigenen Zustandsdiagrammen modelliert, um sie konsistent im gesamten Softwareprojekt und darüber hinaus wiederzuverwenden. Typischen Kanditaten hierfürt sind beispielsweise Prüfung von Objekten oder auch die Modellierung einer Benutzerführung.
+The specialization of state machines allows fully defined life cycles to be reused. Often, smaller life cycles of objects are deliberately modeled in their own state diagrams in order to reuse them consistently throughout the entire software project and beyond. Typical candidates for this are, for example, testing of objects or also the modeling of a user guidance.
 
 ## Protocol State Machines
 
 ### Description
 
-> ***Protocol State Machines*** stellen eine **Sonderform** der bisher vorgestellten **Verhaltens-Zustandsautomaten** dar und werden bei der **Modellierung von Protokollen verwendet.
+***Protocol State Machines*** represent a **special form** of the **behavioral state machines** presented so far and are used in the **modeling of protocols.
 
-Ein Protokoll-Zustandsautomat definiert,
+A protocol state machine defines,
 
-* welche Operationen eines Objekts
-* in welcher Reihenfolge,
-* in welchem Zustand und
-* unter welchen Vor- und Nachbedingungen
+* which operations of an object
+* in which order,
+* in which state, and
+* under which preconditions and postconditions
 
-aufgerufen werden dürfen.
+may be called.
 
 ![Figure](BehavioralDiagrams/StateMachineDiagrams/34.PNG)
 
-Die obige Abbildung zeigt einen Zustandsautomaten, der das vereinfachte Protokoll der Arbeit mit einer *Datei* modelliert. So wird eine *Datei* zunächst im Zustand *Geschlossen* vorgefunden und muss erst geöffnet werden, bevor sie gelesen werden kann.
+The above figure shows a state machine that models the simplified protocol of working with a *file*. Thus, a *file* is initially found in the *Closed* state and must be opened before it can be read.
 
-Um sie zum Schreiben öffnen zu können und damit in den Zustand *Gesperrt* zu versetzen, darf sie nicht bereits von einem anderen Benutzer oder Programm gesperrt worden sein.
+To be able to open it for writing and thus put it into the *Locked* state, it must not have already been locked by another user or program.
 
-Eine Datei kann nur im Zustand *Geschlossen* gelöscht werden unter der Bedingung, dass sie nicht gesperrt ist.
+A file can only be deleted in the *Locked* state on the condition that it is not locked.
 
-Wie mit dem Beispieldiagramm angedeutet, können Sie bei der Modellierung von Protokollen die meisten in diesem Kapitel vorgestellten Notationselememente verwenden, müssen jedoch einige wenige Besonderheiten beachten:
+As indicated with the example diagram, you can use most of the notational elements presented in this chapter when modeling logs, but you must be aware of a few special features:
 
-* Der Rahmen eines Protokoll-Zustandsautomaten wird mit dem Zusatz ```{protocol}``` hinter dem Namen des Automaten versehen.
-* Die Transitionen eines Protokoll-Zustandsautomaten können mit folgenden Informationen versehen werden.
+* The frame of a protocol state machine is suffixed with ``{protocol}`` after the name of the machine.
+* The transitions of a protocol state machine can be provided with the following information.
 
 ![Figure](BehavioralDiagrams/StateMachineDiagrams/35.PNG)
-   
-    * **Precondition:** Definiert eine Einschränkung, die gültig sein muss, bevor die Transition ausgeführt wird.
-    * **Event:** Löst die Transition aus und spezifiziert in einer Protokoll-Transition immer einen **Call Event**.
-    * **Postcondition:** Definiert eine Einschränkung, die gültig sein muss, nachdem die Transition ausgeführt worden ist.
+
+* 
+    * **Precondition:** Defines a constraint that must be valid before the transition is executed.
+    * **Event:** Triggers the transition and always specifies a **Call Event** in a protocol transition.
+    * **Postcondition:** Defines a constraint that must be valid after the transition has been executed.
     
-* Operationen, die keine Transitionen auslösen, werden nicht modelliert.
-* Zustände dürfen in Protokoll-Zustandsautomaten keine ```entry```-, ```do-``` oder ```exit-``` Aktionen besitzen.
-* Die Situation des Objekts (die sogenannte Invariante) kann in Protokoll-Zustandsautomaten zusätzlich in eckigen Klammern angegeben werden.
+* Operations that do not trigger transitions are not modeled.
+* States must not have ``entry``, ``do-``, or ``exit-`` actions in protocol state machines.
+* The situation of the object (the so-called invariant) may additionally be specified in square brackets in protocol state machines.
 
 ![Figure](BehavioralDiagrams/StateMachineDiagrams/36.PNG)
 
-* Die Historien-Zustände dürfen nicht verwendet werden.
+* The history states must not be used.
 
 ### Description
 
-Protkoll-Zustandsdiagramme werden erstellt, um Kommunikationsprotokolle zwischen Objekten zu definieren. Sie werden häufig ergänzend zu Schnittstellendefinitionen eingesetzt, die zwar die statische Struktur beschreiben, aber nicht, wie sie verwendet werden soll.
+Protocol state diagrams are created to define communication protocols between objects. They are often used in addition to interface definitions, which describe the static structure but not how it should be used.
