@@ -1714,3 +1714,385 @@ If the expansion area includes only a single activity or action, it can also be 
 ### Usage
 
 If a set of objects is to be processed in the same way, an expansion area is a good choice. It can also be emulated using individual objects, decision and connection nodes. However, the resulting activity diagram becomes much more complicated and confusing.
+
+# 10. Zustandsdiagramm / State diagram
+
+## Anwendungsbereiche
+
+State Machine Diagrams modellieren wie Aktivitätsdiagramme das dynamische Verhalten eines Systems. Im Gegensatz zu Aktivitätsdiagrammen, die ihren Fokus auf die Aktionen eines Systems legen, konzentrieren sich Zustandsdiagramme auf die Rekationen eines Systems.
+
+Aus diesem Grund eignen sich Zustandsdiagramme beispielsweise sehr gut zur Modellierung des Verhaltens von Benutzeroberflächen, die üblicherweise nur auf Befehle von Benutzern reagieren und selbst keine eigenen Aktionen initiieren. Solche Diagramme werden als Verhaltens-Zustandsdiagramme bezeichnet.
+
+Die Modellierung von Kommunikationsprotokollen, die Vorgaben über die Reihenfolge und Voraussetzungen von Kommunikationsschritten definieren, kann ebenfalls mit Zustandsdiagrammen durchgeführt werden. Die UML bezeichnet diese speziellen Zustandsdiagramme als Protokoll-Zustandsdiagramme.
+
+Das Buch konzentriert sich auf die bei Weitem am häufigsten verwendeten Verhaltens-Zustandsdiagramme und wird die Unterschiede zwischen den beiden Zustdansdiagrammarten am Ende des Kapitels behandeln.
+
+Eingesetzt werden Zustandsdiagramme zumeist zur Ergänzung von Klassendiagrammen in der Analyse/Definition- und Entwurf/Design-Phase, also dort, wo der Lebensweg von Objekten modelliert wird. Jedes Objekt, das anch dem Bauplan einer Klasse erzeugt wurde, befindet sich jederzeit in einem bestimmten Zustand, der durch seine Attributwerte definiert ist. Während seiner Lebensdauer (von der Instanziierung bis zu seiner Destruktion) kann ein Objekt nur bestimmte sinnvolle Kombinationen von Attributwerten und somit Zuständen einnehmen, die mithilfe von Zustandsdiagrammen modelliert werden können.
+
+In unterschiedlichen Zuständen reagiert ein Objekt auf diesebeln Anfragen möglicherweise unterschiedlich. 
+
+## Notationselemente
+
+## Simple State
+
+![Figure](BehavioralDiagrams/StateMachineDiagrams/2.PNG)
+
+### Description
+
+> Ein ***Simple State*** modelliert eine **Situation**, in der gewisse genau definierte Bedingungen gelten.
+
+Es kann sich dabei um eine statische Situation handeln, in der ein System beispielsweise auf eine Eingabe wartet, oder auch um eine dynamische Situation, wie z.B. um die Ausführung einer Aufgabe.
+
+Die obige Abbildung zeigt beide von der UML bereitgestellten Darstellungsmöglichkeiten eines Zustands.
+
+Der Zustand, in dem sich ein Objekt gerade befindent, wird als **aktiver Zustand** bezeichnet.
+
+### Usage
+
+Modellieren Sie Zustände, um definierte Situationen im Leben eines Objekts darzustellen. In den meisten Zustandsdiagrammen ist es eine gute Idee, einen *Ruhe*-Zustand zu modellieren, in den das modellierte Objekte sofort nach dem *Start* wechselt.
+
+Im Ruhe-Zustand kann ein Objekt verbleiben, bis ein definierttes Event eintritt, nach dem die Arbeit des Objekts beginnen soll. DAs Objekt besitzt damit auch eine Art Default-Zustand, in den es jederziet nach der Beendigung seiner Arbeit, nach einem Fehler oder einem Reset zurückkehren kann.
+
+## Event and Transition
+
+![Figure](BehavioralDiagrams/StateMachineDiagrams/3.PNG)
+
+> Eine ***Transition*** ist eine gerichtete Beziehung zwischen zwei Zuständen und stellt einen **Zustandsübergang vom Quell- zum Zielzustand** dar.
+
+So modelliert die obige Abbildung, dass nach dem Zustand *Ruhe* der Zustand *Arbeit* betreten wird.
+
+Eine Transition wird durch sogenannte Events ausgelöst. In jedem aktiven Zustand, in dem sich ein Objekt während seines Lebens befindet, treffen unterschiedliche Events auf das Objekt ein. Das Objekt kann sie ignorieren oder darauf reagieren, indem es eine Aktion durchführt und/oder seinen Zustand ändert. Die Definition der Transition besteht aus den Bestandteilen **Event [Guard]/Effekt**, deren Details im Folgenden dargestellt werden:
+
+* **Event**: Die UML definiert fünf Arten von Events:
+    * **Call Event:** Dies repräsentiert das Empfangen einer Anfrage, eine gewisse Operation durchzuführen. Der aktive Zustand reagiert darauf mit der Ausführung der geforderten Operation und einer eventuellen Transition in einen weiteren Zustand. (Siehe folgende Abbildung) Wird im Zustand *Ruhe* die Operation *arbeite* aufgerufen, wechselt das Objekt im aktuellen Zustand ein asynchrones Signal empfängt.
+    
+    ![Figure](BehavioralDiagrams/StateMachineDiagrams/4.PNG)
+    
+    * **Signal Event:** Ein Signal Event wird ausgelöst, wenn das Objekt im aktuellen Zustand ein asynchrones Signal empfängt.
+    
+    ![Figure](BehavioralDiagrams/StateMachineDiagrams/5.PNG)
+    
+    Empfängt das Objekt im Zustand *Ruhe* das Signal *Chef kommt*, wechselt es in den Zustand *Arbeit*.
+    
+   * **Change Event:** Ein Change Event wird als ein boolescher Ausdruck mit einem vorangestellten *when* notiert und ausgelöst, wenn sich einer oder mehrere Attributwerte des Objekt so ändern, dass der Wert des booleschen Ausdrucks von *false* nach *true* umschaltet.
+   
+   ![Figure](BehavioralDiagrams/StateMachineDiagrams/6.PNG)
+   
+    Ändern sich im Zustand *Ruhe* die Attributewerte des Objekts so, dass sein *Kontostand < 0* wird, wechselt es in den Zustand *Arbeit*.
+    
+    * **Time Event:** Ein Time Event definiert einen Zeitpunkt oder eine Zeitspanne, nach der die spezifizierte Reaktion stattfinden muss.
+    
+    ![Figure](BehavioralDiagrams/StateMachineDiagrams/7.PNG)
+    
+    Das Objekt führt in der obigen Abbildung *nach der Mittagspause* sofort eine Transition in den Zustand *Arbeit* durch.
+    
+    * **Any Receive Event:** Die Reaktion auf eine Any Receive Event wird bei allen eintreffenden Events ausgeführt, für die keine gesonderte Reaktion definiert ist. Ein Any Receive Event wird mit dem Schlüsselwort *all* nortiert.
+    
+    ![Figure](BehavioralDiagrams/StateMachineDiagrams/8.PNG)
+    
+    Trifft das Event *Kontostand < 0* ein, erfolgt eine Transition vom Zustand *Ruhe* in den Zustand *Arbeit*. Trifft ein beliebiges anderes Event ein (*all*), erfolgt ein Wechsel in den Zustand *Shopping* (siehe obige Abbildung).
+    
+    Lösen Events dieslbe Transition aus, können sie, durch Kommas getrennt, hintereinander notiert werden (siehe folgende Abbildung):
+    
+    ![Figure](BehavioralDiagrams/StateMachineDiagrams/9.PNG)
+    
+    * **Guard:** Ein Transition Wird nur ausgeführt, wenn ihr Guard zu *true* ausgewertet wird. Obwohl er ebenfalls mit einem booleschen Ausdruck notiert wird (eingeschlossen in eckigen Klammern), sollt eer nicht mit dem Change Event verwechselt werden. Es ist durchaus üblich, dass ein Change Event eine Transition eigentlich triggert, sie aufgrund des Guards jedoch nicht ausgeführt wird.
+    
+    ![Figure](BehavioralDiagrams/StateMachineDiagrams/10.PNG)
+    
+    In der obigen Abbildung würde das Objekt eigentlich bei einem *Kontostand < 0* vom Zustand *Ruhe* zu *Arbeit* wechseln. Hat es jedoch keine *Lust zu arbeiten*, wird die Transition nicht ausgeführt.
+    
+    * **Effekt:** Ein Effekt definiert Aktionen, die bei einer Transition ausgeführt werden, und wird nach einem Schrägstrich notiert.
+    
+    ![Figure](BehavioralDiagrams/StateMachineDiagrams/11.PNG)
+    
+    Ist der *Kontostand* des Objekts kleiner als *0*, führt es die Aktion *Zur Arbeitsstelle gehen* durch und wechselt danach in den Zustand *Arbeit*.
+    
+    Eine Sequenze von Aktionen während einer Transition kann auch auf die folgen Art notiert werden:
+    
+    ![Figure](BehavioralDiagrams/StateMachineDiagrams/12.PNG)
+    
+    Nachdem das Objekt realiserit hat, dass sein *Kontostand < 0* ist, verlässt es laut dem Zustandsdiagramm aus der obigen Abbildung sein Bett, geht zu seiner Arbeitsstelle und wechselt in den Zustand *Arbeit*.
+    
+    Die UML erlaubt ebenfalls, während einer Transition Signale zu senden und zu empfangen:
+    
+    ![Figure](BehavioralDiagrams/StateMachineDiagrams/13.PNG)
+    
+    Nachdem das Objekt das Signal *Verspätet* auf seinem Weg zur Arbeit empfangen hat, sendet es das Signal *Taxi!* und fährt zu seiner Arbeitsstelle.
+    
+
+Wie bereits zuvor erwähnt wurde, definiert die UML unterschiedliche Arten von Reaktionen, die ein Objekt bei einem Event durchführen kann:
+
+* **Ignorieren von Events:** Trifft ein Event auf einen aktiven Zustand, der keinerlei Definition enthält, wie darauf reagiert werden soll, wird es konsumiert (es wird nicht aufbewahrt), löst jedoch keinerlei Reaktion aus.
+* **Transition zu einem anderen Zustand:** Als Folge des Empfangens eines Events wird eine Transition zu einem anderen Zustand durchgeführt.
+* **Interne Aktionen:** Aufgrund eines Events wird lediglich eine Aktion ausgeführt, der Zustand wechselt nicht.
+
+![Figure](BehavioralDiagrams/StateMachineDiagrams/14.PNG)
+
+
+Tritt laut die obige Abbildung das Event *Wecker klingelt* im aktiven Zustand *Ruhe* ein, wird die Aktion *Aufstehen* ausgeführt, der Zustand wechselt jedoch nicht.
+
+Die UML definiert zusätzlich drei spezielle Arten von internen Aktionen.
+
+![Figure](BehavioralDiagrams/StateMachineDiagrams/15.PNG)
+	
+	* **entry:** Die Aktion wird beim Betreten des Zustands ausgeführt und zu Ende gebracht, bevor jegliche weitere Aktionen aufgerufen werden.
+	* **do:** Die Aktion startet nach dem Betreten des Zustands (und nach einer eventuellen *entry*-Aktion) und wird so lange ausgeführt, bis sie endet oder der Zustand wieder verlassen wird.
+	* **exit:** Vor dem Verlassen eines Zustands, jedoch nach der *entry*- oder auch der *do*-Aktion wird die *exit*-Aktion aufgerufen und vollständig abgearbeitet. Der Zustand kann erst hiernach verlassen werden. Die obigen Abbildung modelliert, dass beim etreten des Zustands *Ruhe* das Objekt sich *schlafen legt(entry)*, es während des gesamten Zustands *schläft* und vor seinem Verlassen wieder *aufwacht*.
+* **Verzögern von Events:** Ein bestimmtes Event kann **deferred** werden, falls im jeweiligen Zustand nicht darauf reagiert werden soll. Das Event wird aufbewahrt und bei jedem Zustandswechsel dem neuen Zustand angeboten, bis das Objekt einen Zustand erreicht, in dem das verzögerte Event eine Reaktion auslöst und das Event damit *verbraucht* wird.
+
+![Figure](BehavioralDiagrams/StateMachineDiagrams/16.PNG)
+
+In der obigen Abbildung wird das Event *arbeite* verzögert, wenn das Objekt *keine Lust* hat.
+
+* **Selbst-Transition:** Die Transition erfolgt nicht zu einem anderen Zustand, sondern führt wieder zu ihrem Quellzustand zurück.
+
+![Figure](BehavioralDiagrams/StateMachineDiagrams/17.PNG)
+
+Hat das Objekt im Zustand *Arbeit* beim Empfang des Events *arbeite* tatsächlich *Lust auf Arbeit*, wechselt es erneut in seinen Zustand *Arbeit*. Im Gegensatz zu einer internen Aktion wird der Zustand tatsächlich verlassen. Eventuell definierte *exit*- bzw. *entry*-Aktionen werden demnach beim Verlassen bzw. Wiederbetreten des Zustands ausgeführt.
+
+### Use Case
+
+Events und Transitionen erlauben die Modellierung des Verhaltens von Objekten als Reaktionen auf Einflüsse ihrer Umgebung. Wie eingangs dargestellt wurde, kann ein Objekt in Abhängigkeit von seinem Zustand auf die gleichen Einflüsse unterschiedlich reagieren.
+
+## Initial state, End state and Terminator
+
+![Figure](BehavioralDiagrams/StateMachineDiagrams/18.PNG)
+
+### Description
+
+> Der ***Initial State*** stellt den **Startpunkt** des Zustandsautomaten dar.
+
+In einem Zustandsautomat darf maximal ein Startzustand definiert werden. Nach der Instanziierung eines Objekts beginnt sein *Lebensweg* im Startzustand, wobei dieser sofort verlassen wird. Aus diesem Grund darf die Durchführung einer Transition aus einem Startzustand nicht durch Guards oder Events eingeschränkt werden. Die Durchführung einer Aktion ist gestattet.
+
+> Die Ausführung einer **Region oder Eben von Zuständen** ist beim Erreichen eines **Final State** beendet.
+> Die Ausführung eines ganzen **Zustandsautomaten** ist beim Erreichen eines **Terminator** beendet.
+
+Ein Zustandsautomat kann beliebig viele Endzustände und Terminatoren enthalten. Das Ende der Ausführung eines Zustandsautomaten markiert auch das Lebensende des Objekts, dessen Lebensweg der Zustandsautomat beschreibt.
+
+Zustände können weitere Zustände oder Regionen enthalten. Beim Erreichen eines Endzustands wird nur die Ausführung der Region oder Ebene von Zuständen beendet, in der er sich befindet. Wird er in der höchsten Ebene modelliert, wird bei seinem Erreichen auch die Ausführung des gesamten Zustandsautomaten beendet.
+
+Der Terminator hingegen beendet die Ausführung des gesamten Zustandsautoamten, unabhängig davon, in welcher Ebene oder Region er modelliert wird.
+
+### Usage
+
+Durh den Einsatz von Start- und Endknoten können Sie den gewünschten Anfangszustand bzw. das Ausführungsende des Zustandsautomaten festlegen. Jeder vollständige Zustandsautomat muss einen Start- und mindestens einen Endknoten besitzen.
+
+Der Terminator wird zumeist eingesetzt, um einen abrupten Abbruch zu erzwingen, was beispielsweise in schwerwiegenden Fehlerfällen wünschenswert sein kann.
+
+## Choices and Junction
+
+![Figure](BehavioralDiagrams/StateMachineDiagrams/19.PNG)
+
+### Description
+
+> Eine ***Junction*** modelliert eine **Hintereinanderschaltung** von **Transitionen**.
+
+Kreuzung können verwendet werden, um mehrere eingehende Transitionen zu einer ausgehenden zu transformieren. Umgekehrt kann eine eingehende Transition in mehrere mit Guards überwachte Transitionen aufgeteilt werden, wodurch eine Art **statische Verzweigung** modelliert wird. Statisch bedeutet in diesem Fall, dass die Entscheidung über die ausgehende Transition bereits vor dem Erreichen der Kreuzung getroffen wird.
+
+> ***Choices*** modellieren **dynamische Verzweigung**.
+
+Eine eingehende Transition wird an einer Entscheidung in mehrere mit Guards überwachte Transitionen aufgeteilt. Im Unterschied zu einer Kreuzung (statisch) wird die ausgehende Transition dynamisch erst beim Erreichen der Entscheidung ausgewählt.
+
+Der Unterschied zwischen einer statischen und dynamischen Entscheidung lässt sich anhand von der obigen Abbildung verdeutlichen. Nach dem Start wird sowohl im rechte wie im linken Zustandsdiagramm im Zustand *Ruhe* das Attribut *Lust zu arbeiten* auf *true* gesetzt. Die ausgehende Transition setzt es wieder auf *false*.
+
+Im rechten Zustandsdiagramm wird zunächst die ausgehende Transition ausgeführt, der Attributwert also auf *false* gesetzt, bevor an der Entscheidung die nächste Transition bestimmt wird. Der nächste Zustand würde hiert *Entspannung* sein.
+
+Im linken Zustandsdiagramm wird die Auswahl der nächsten Transition bereits beim Verlassen des Zustands *Ruhe* getroffen. Der Attributwert von *Lust zu arbeiten* ist an diser Stelle noch *true*, sodass die Transition zum Zustand *Arbeit* gewählt wird.
+
+Damit kann das linke Zustandsdiagramm auch so notiert werden, wie in der folgenden Abbildung dargestellt.
+
+![Figure](BehavioralDiagrams/StateMachineDiagrams/20.PNG)
+
+Die Zustandsdiagramme aus der obigen Abbildung sind semantisch äquivalent.
+
+### Usage
+
+Entscheidungen werden zur Modellierung alternativer Lebenswege eines Objekts eingesetzt. Achten Sie darauf, dass die Guards an den ausgehenden Transitionen die Übergangsbedingungen erschöpfend und disjunkt definieren. Ist dies nicht möglich oder zu aufwendig, fügen Sie einen Guard hinzu, der alle sonstigen Übergangsbedingungen zusammengfasst (*[else]*).
+
+Kreuzungen können sowohl als dynamische Entscheidungen wie auch zur Zusammenfassung und Verzweigung von Transitionen verwendent werden. Ihre größten Vorteile offenbaren sich bei vielen sich kreuzenden Transitionen, deren Struktur durch den Einsatz von Kreuzungen deutlich vereinfacht wird.
+
+## Composite Sites
+
+![Figure](BehavioralDiagrams/StateMachineDiagrams/22.PNG)
+
+### Description
+
+> ***Composite States*** modellieren Hierarchien von Zuständen.
+
+Die obigen Abbildung zeigt drei solche zusammengesetzte Zustände:
+
+* *Arbeit*
+    * Dieser Zustand beshtet aus einem Start- und Endzustand sowie aus den Zuständen *Passiv* und *Aktiv*. Der Letztere wird sofort nach der Aktivierung des Zustands *Arbeit* betreten.
+* *Aktiv*
+    * Neben einem Start- und Endzustand und einem Terminator beinhaltet *Aktiv* die Zustände *Motiviert* und *Unmotiviert*. Anhand diese Beispiels wird der Unterschied zwischen einem Endzustand, der nur das Verlassen des Zustands *Aktiv* bewirkt, und einem Terminator, der das Verlassen des gesamten Zustandsautomaten veranlasst, noch deutlicher. Unmittelbar nach dem Betreten des *Aktiv*-Zustands erfolgt eine Transition in den Zustand *Motiviert*. Hat das Objekt *Keine Lust*, wechselt es in den Zustand *Unmotiviert*. Beim Event *Feierabend* wird die Ausführung des gesamten Zustandsautomaten abgebrochen, bei *Pause* nur der Zustand *Aktiv*, und es erfolgt eine TRansition in den Zustand *Passiv*.
+* *Passiv*
+    * *Passiv* ist ebenfalls ein zusammengesetzter Zustand, der weitere Unterzustände beinhaltet. Erkennbar ist dies an den zwei kleinen verbunden Zuständen. Seine inneren Zustände sind in diesem Diagramm ausgeblendet und müssen in einem separaten Zustandsdiagram spezifiziert werden. Wird in diesem Zustand das Event *Pause beendet* empfangen, erfolgt ein Wechsel in den Zustand *Aktiv*; bei *Feierabend* wird die Ausführung des Zustandsautomaten beendet.
+    
+In einem hierarchischen Zustandsdiagramm, wie es durch zusammengesetzte Zustände ensteht, können mehrere Zustände, die in einer hierarchischen Beziehung zueinander stehen, gleichzeitig aktiv sein. Ist beispielswiese in der obigen Abbildung der Zustand *Motiviert* aktiv, sind gleichzeitg alle Zustände, die in derselben hierarchischen Beziehung über ihm stehen, aktiviert.
+
+Ein zusammengesetzer Zustand kann auf fünf unterschiedliche Arten betreten werden. Beachten Sie bitte, dass es sich hierabei um kein korrektes Zustandsdiagramm handelt, da es mehrere STartpunkte auf einer Ebene enthält. Es erfüllt jedoch seinen Zweck als anschauliches Beispiel.
+
+![Figure](BehavioralDiagrams/StateMachineDiagrams/23.PNG)
+
+* **Default Entry:** Die Transition endet am Rand des zusammnengesetzten Zustands, womit der modellierte Startzustand angesprungen und die Transition zum Zustand *Aktiv* durchgeführt wird.
+* **Explicit Entry:** Die Transition druchbricht den Rand des zusammengesetzten Zustands und führt direkt zu einem speziellen Unterzustand. Hierdurch wird der vorgegebene Startzustand umgangen und ein explizierter Unterzustand aktiv.
+* **Shallow History Entry:** Die Transition durchbricht den Rand eines zusammengesetzten Zustands und führt zum Notationselement der flachen HIstorie (ein *H* umgeben von einem Kreis). Wurde der zusammengesetzte Zustand bereits bertreten, wird damit der letzte vor dem Verlassen des Zustands aktive Unterzustand der obersten Ebene betreten. In unserem Beispiel könnte die *Aktiv* oder *Passiv* sein. Bei erstmaligem Betreten des zusammengesetzen Zustands wird die von der flachen Historie ausgehende Transition ausfgeführt.
+* **Deep History Entry:** Die Transition durchbricht den Rand eines zusammengesetzten Zustands und führt zum NOtationselement der tiefen Historie (ein *H\** umgeben von einem Kreis). Wurde der zusammengesetzte Zustand bereits betreten, wird damit der letzte vor dem Verlassen des Zustands aktive Unterzustand der tiefstmöglichen Ebene betreten. In unserem Beispiel könnte dies *Motiviert*, *Unmotiviert* oder einer der nicht gezeigten Unterzustände von *Passiv* sein. Bei erstmaligem Betreten des zusammengesetzten Zustands wird die von der tiefen Historie ausgehende Transition ausgeführt. Flache und tiefe Historie stellen damit eine Art Gedächtnis von Zustandsautomaten dar.
+* **Entry Point Entry:** Die Transition endet am Eintrittspunkt eines zusammengesetzten Zustands, womit die den Eintrittspunkt verlassende Transition ausgeführt wird.
+
+Umgekehrt ist es erwartungsgemäß auch möglich, einen zusammengesetzten Zustand auf unterschiedliche Arten zu verlassen:
+
+* **Austritt über Endzustand**
+    * Der Endzustand beendet lediglich die Ausführung des zusammengesetzen Zustands, der ihn enthält. In der folgenden Abbildung kann der Unterzustand *Aktiv* durch den Endzustand *Ende* beendet werden. Daraufhin wird die Transition zum Zustand *Passiv* ausgeführt.
+    
+    ![Figure](BehavioralDiagrams/StateMachineDiagrams/24.PNG)
+* **Austritt über Terminator**
+    * Durch den Terminator wird jeder Zustand verlassen, da die Ausführung des gesamten Zustandsautomaten beendet wird und dmait der modellierte Lebensweg des Objekts endet.
+* **Transition aus einem zusammengesetzten Zustand**
+    * Empfängt ein zusammengesetzter Zustand ein Event, das eine ausgehende Transition aktiviert, werden die inneren Zustände und der zusammengesetzte Zustand verlassen. Der Zustand *Arbeit* aus der obigen Abbildung wird beim Empfangen des Events *entlassen* verlassen.
+* **Transition aus einem inneren Zustand**
+    * Empfängt ein innerer Zustand ein Event, das eine Transition aktiviert, die aus dem zusammengesetzten Zustands herausführt, wird dieser ebenfalls verlassen. In der obigen Abbildung reagiert der Zustand *Unmotiviert* auf das Event *gefeuert* mit dem Verlassen des gesamten zusammengesetzten Zustands *Arbeit*.
+* **Exit Point Exit**
+    * Nach der Ausführung einer Transition zu einem Austrittspunkt des zusammengesetzen Zustands wird dieser verlassen, und die vom Austrittspunkt ausgehenden Transition wird ausgeführt.
+
+### Use Case
+
+Zusammengesetzte Zustände erlauben es Ihnen, ein und dasselbe Zustandsdiagramm mit unterschiedlichen Abstrahierungsgraden zu modellieren. Ausgehend von einer groben Schicht auf das Zustandsdiagramm, kann es in iterativen Schritten verfeinert und detailliert werden.
+
+Das Ausblenden von internen Zuständen ermöglicht andersherum auch das Herauszoomen aus dem Diagramm.
+
+## Region
+
+![Figure](BehavioralDiagrams/StateMachineDiagrams/25.PNG)
+
+### Description
+
+> ***Regions*** teilen zusammengesetzte Zustände oder ganze Zustandsautomaten **in disjunkte Bestandteile** auf.
+
+Jede Region kann einen eigenen Start- und mehrere eigene Endzustände haben. Wird eine Region betreten, werden standardmäßig alle Startzustände aktiv und führen nebenläufig die modellierten Transitionen zu den nachfolgenden Zuständen durch. (Transitionen zwischen unterschiedlichen Regionen sind verboten.)
+
+Endzustände bewirken das Verlassen der jeweiligen Region, in der sie sich befinden. Der gesamte zusammengesetzte Zustand oder Zustandsautomat wird nur verlassen, nachdem alle Regionen ihre Endzustände erreicht haben. Erreicht eine der Regionen jedoch einen Terminator, wird der gesamt Zustandsautomat oder zusammengesetzte Zustand verlassen.
+
+Die obige Abbildung modelliert einen Zustand *Restaurantbesuch* mit zwei Regionen, die mit den optionalen Namen *Geist* und *Körper* ausgezeichnet sind.
+
+Nach dem Aktivieren des orthogonal zusammengesetzen Zustands (wie ein Zustand mit Regionen auch bezeichnet wird)  befindet sich der *Geist* im Zustand *Angespannt*. Nachdem er sich *entspannt* hat, wechslet er in den Zustand *Entspannung* und erreicht den Endzustand seiner Region.
+
+Parallel hierzu wechselt der *Körper* in den Zustand *Hungrig*, in dem die andauernde Aktion *essen* ausgeführt wird, wonach der Zustand *Gesättigt* und anschließend der Endzustand der Region erreicht wird.
+
+Das Betreten und Verlassen von Regionen kann ebenfalls mithilfe von ***fork*** und ***join*** notiert werden.
+
+![Figure](BehavioralDiagrams/StateMachineDiagrams/26.PNG)
+
+### Description
+
+Mithilfe von Regionen können gleichzeitig auftretenden Zustände eines Objekts modelliert werden. Am häufigsten wird davon bei der Zustandsmodellierung von inneren Bestandteilen von Klassen Gebrauch gemacht.
+
+## Frames
+
+> Ein ***Zustandsautomat*** kann ***von einem Frame umfasst*** und benannt werden. Das Kürzel ***sm*** steht für ***state machine***.
+
+Durch die Umrahmung und Benennung ermöglicht man die Referenz des Zustandsautomaten in weiteren Zustandsautomaten.
+
+Hierzu können statt Start- und Endzuständen ***Entry/Exit Points*** definiert werden, wodurch die Folge der Transitionen für die Wiederverwendung noch klarer wird.
+
+![Figure](BehavioralDiagrams/StateMachineDiagrams/27.PNG)
+![Figure](BehavioralDiagrams/StateMachineDiagrams/28.PNG)
+
+Der Zustandsautomat *Prüfung* wird durch den Eintrittspunkt *Prüfbeginn* betreten. Verlassen wird er entweder über den Austrittspunkt *Bestanden* oder *Durchgefallen*.
+
+Nun kann der Zustandsautomat sehr einfach wiederverwendet werden.
+
+Der wiederverwendetet Zustandsautomat wird als ein einfacher Zustand modelliert und über Eintritts- bzw. Austrittspunkte betreten und wieder verlassen. Hinter seiner Zustandsbezeichnung wird, durch einen Doppelpunkt getrennt, der Name des Zustandsautomaten notiert, der wiederverwendet wird. Die notation deutet damit auf eine Art Instanziierung eines Zustandsautomaten hin, wie sie Ihnen bereits aus Klasssen und Objekten bekannt sein dürfte.
+
+Zustände, die einen Zustandsautomaten wiederverwenden, werden auch als ***Submachine States*** bezeichnet.
+
+![Figure](BehavioralDiagrams/StateMachineDiagrams/29.PNG)
+
+### Use Case
+
+Zustandsdiagramme können in der UML konsistent in weiteren Zustandsdiagrammen wiederverwendet werden. Man erreicht dies durch die Modellierung von Rahmen, Eintritts- und Austrittspunkten und Unterzustandsautomatenzuständen.
+
+Die Verwendung von Unterzustandsautomaten strukturiert das Modell hierarchisch auf unterschiedlichen Abstraktionsstufen und macht es überschaubarer, lesbarer und verständlicher.
+
+## Generalisierung/Spezialisierung
+
+![Figure](BehavioralDiagrams/StateMachineDiagrams/30.PNG)
+![Figure](BehavioralDiagrams/StateMachineDiagrams/31.PNG)
+
+### Description
+
+> ***Zustandsdiagramme*** können **generalisiert** und **spezialisiert** werden.
+
+Ein spezialisierendes Zustandsdiagramm erbt alle Elemente des generalisierenden Zustandsdiagramms und darf weitere Elemente (Regionen, Zustände, Transitionen) hinzufügen bzw neu definieren, wobei die folgenden Regeln einzuhalten sind:
+
+* Ein einfacher Zustand kann zu einem zusammengesetzen Zustand oder durch Regionen erweitert werden.
+* Zustände und Transitionen einer Region können durch neue Zustände und Transitionen ersetzt werden.
+* Neue Zustände und Transitionen können hinzugefügt werden.
+* Ein zusammengesetzter Zustand kann durch weitere Unterzustände oder Regionen erweitert werden.
+* Einem zusammengesetzten Zustand können Ein- und Austrittspunkte hinzugefügt werden.
+* Ein Unterzustandsautomatenzustand kann durch einen Unterzustandsautomantenzustand ersetzt werden, der dieselben Eintritts- und Austrittspunkte besitzt
+* Der Zielzustand einer bestehendne Transition kann im spezialisiernden Zustandsdiagramm verändert werden, ihr Quellzustand und Event nicht.
+* Zustände, Transitionen und Regionen, die durch Spezialieiserung nicht mehr überschrieben und verändert werden sollen, müssen mit dme Schlüsselwort ```{final}``` gekennzeichnet werden.
+
+Die obigen Abbildungen zeigen ein Beispiel für die Spezialisierung von ganzen Zustandsdiagrammen.
+
+Das Zustandsdiagramm aus der ersten obigen Abbildung modelliert einen einfachen *Parkautomaten*, der einige seiner Elemente mit ```{final}``` und damit nicht veränderbar markiert.
+
+Nach dem *Start* befindet er sich zunächst im *Ruhe*-Zustand. Sobald eine *Münze eingeworfen* wird, merkt er sich den *betrag* und wechselt in den Zustand *Barzahlung*, in dem so lange *Münzen eingeworfen* werden können, bis der Benutzer einen *roten Knopf* oder einen *grünen Kopf* drückt, der als Bestätigung aufgefasst wird.
+
+Widr der rote Knopf gedrückt, erfolgt eine Auszahlung der bisher eingeworfenen Münzen. Nach der Betätigung des grünen Knopfs berechnet der *Parkautomat* die bezahlte Parkzeit, druckt einen Beleg aus und wechselt wieder in der *Ruhe*-Zustand.
+
+Das Zustandsdiagramm aus der zweiten obigen Abbildung spezialisiert den Parkautomaten aus der ersten obigen Abbildung, was am Schlüsselwort ```{extended}``` erkennbar ist. Die geerbten Zustände können an ihrem gestrichelten Rand erkannt werden.
+
+Der Zustand Rückzahlung ist unverändert übernommen worden, wohingegen die Zustände *Ruhe*, *Barzahlung* und *Belegdruck* um die Aufgabe, eine *Anzeige* zu verwalten, erweitert worden sin. Der *Parkautomat* ist mithilfe des neu hinzugefügten zusammengesetzten Zustands *Kartenzahlung* um die Fähgikeit bereichert worden, die Parkgebührt mit einer *EC-Karte* zu begleichen.
+
+### Use Case
+
+Die Spezialisierung von Zustandsautomaten erlaubt, vollständig definierte Lebensabläufge wiederzuverwenden. Häufig werden bewusst kleiner Lebensabschnitte von Objekten in eigenen Zustandsdiagrammen modelliert, um sie konsistent im gesamten Softwareprojekt und darüber hinaus wiederzuverwenden. Typischen Kanditaten hierfürt sind beispielsweise Prüfung von Objekten oder auch die Modellierung einer Benutzerführung.
+
+## Protocol State Machines
+
+### Description
+
+> ***Protocol State Machines*** stellen eine **Sonderform** der bisher vorgestellten **Verhaltens-Zustandsautomaten** dar und werden bei der **Modellierung von Protokollen verwendet.
+
+Ein Protokoll-Zustandsautomat definiert,
+
+* welche Operationen eines Objekts
+* in welcher Reihenfolge,
+* in welchem Zustand und
+* unter welchen Vor- und Nachbedingungen
+
+aufgerufen werden dürfen.
+
+![Figure](BehavioralDiagrams/StateMachineDiagrams/34.PNG)
+
+Die obige Abbildung zeigt einen Zustandsautomaten, der das vereinfachte Protokoll der Arbeit mit einer *Datei* modelliert. So wird eine *Datei* zunächst im Zustand *Geschlossen* vorgefunden und muss erst geöffnet werden, bevor sie gelesen werden kann.
+
+Um sie zum Schreiben öffnen zu können und damit in den Zustand *Gesperrt* zu versetzen, darf sie nicht bereits von einem anderen Benutzer oder Programm gesperrt worden sein.
+
+Eine Datei kann nur im Zustand *Geschlossen* gelöscht werden unter der Bedingung, dass sie nicht gesperrt ist.
+
+Wie mit dem Beispieldiagramm angedeutet, können Sie bei der Modellierung von Protokollen die meisten in diesem Kapitel vorgestellten Notationselememente verwenden, müssen jedoch einige wenige Besonderheiten beachten:
+
+* Der Rahmen eines Protokoll-Zustandsautomaten wird mit dem Zusatz ```{protocol}``` hinter dem Namen des Automaten versehen.
+* Die Transitionen eines Protokoll-Zustandsautomaten können mit folgenden Informationen versehen werden.
+
+![Figure](BehavioralDiagrams/StateMachineDiagrams/35.PNG)
+   
+    * **Precondition:** Definiert eine Einschränkung, die gültig sein muss, bevor die Transition ausgeführt wird.
+    * **Event:** Löst die Transition aus und spezifiziert in einer Protokoll-Transition immer einen **Call Event**.
+    * **Postcondition:** Definiert eine Einschränkung, die gültig sein muss, nachdem die Transition ausgeführt worden ist.
+    
+* Operationen, die keine Transitionen auslösen, werden nicht modelliert.
+* Zustände dürfen in Protokoll-Zustandsautomaten keine ```entry```-, ```do-``` oder ```exit-``` Aktionen besitzen.
+* Die Situation des Objekts (die sogenannte Invariante) kann in Protokoll-Zustandsautomaten zusätzlich in eckigen Klammern angegeben werden.
+
+![Figure](BehavioralDiagrams/StateMachineDiagrams/36.PNG)
+
+* Die Historien-Zustände dürfen nicht verwendet werden.
+
+### Description
+
+Protkoll-Zustandsdiagramme werden erstellt, um Kommunikationsprotokolle zwischen Objekten zu definieren. Sie werden häufig ergänzend zu Schnittstellendefinitionen eingesetzt, die zwar die statische Struktur beschreiben, aber nicht, wie sie verwendet werden soll.
